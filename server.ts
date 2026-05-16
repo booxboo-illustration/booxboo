@@ -9,8 +9,8 @@ import mime from "mime";
 
 dotenv.config();
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const _filename = fileURLToPath(import.meta.url);
+const _dirname = path.dirname(_filename);
 
 async function startServer() {
   const app = express();
@@ -146,44 +146,46 @@ async function startServer() {
   } else {
     console.log(`[Server] Production mode detected.`);
     
-    // In production, server.cjs is in 'dist/'
-    // Fallback logic for reliable directory matching
-    const currentDir = typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
+    // In production, server.cjs is located in 'dist/'.
+    // If it's bundled there, __dirname will be the dist directory.
+    const currentDir = typeof __dirname !== 'undefined' ? __dirname : _dirname;
     const distPath = currentDir.endsWith("dist") ? currentDir : path.join(process.cwd(), "dist");
     const indexPath = path.join(distPath, "index.html");
 
     console.log(`[Server] Serving static files from: ${distPath}`);
+    console.log(`[Server] Base Directory: ${currentDir}`);
 
-    // Serve static files with explicit MIME type handling to fix MIME errors on some platforms
-    const mimeTypes: Record<string, string> = {
-      ".js": "application/javascript",
-      ".mjs": "application/javascript",
-      ".css": "text/css",
-      ".html": "text/html",
-      ".json": "application/json",
-      ".png": "image/png",
-      ".jpg": "image/jpeg",
-      ".jpeg": "image/jpeg",
-      ".svg": "image/svg+xml",
-      ".webp": "image/webp",
-    };
+    // FORCE MIME Types for JS and CSS files before express.static
+    app.use((req, res, next) => {
+      const url = req.url.split('?')[0]; // Remove query strings
+      if (url.endsWith('.js') || url.endsWith('.mjs')) {
+        res.setHeader('Content-Type', 'application/javascript; charset=UTF-8');
+      } else if (url.endsWith('.css')) {
+        res.setHeader('Content-Type', 'text/css; charset=UTF-8');
+      }
+      next();
+    });
 
+    // Provide static files from dist
     app.use(express.static(distPath, {
+      index: false, // We'll handle index.html manually at the end
       setHeaders: (res, filePath) => {
-        const ext = path.extname(filePath).toLowerCase();
-        const type = mimeTypes[ext] || mime.getType(filePath);
+        // Fallback or double-check for MIME types
+        const type = mime.getType(filePath);
         if (type) {
           res.setHeader("Content-Type", type);
         }
       }
     }));
 
+    // For any other request, send the index.html (SPA Fallback)
     app.get("*", (req, res) => {
       if (fs.existsSync(indexPath)) {
+        res.setHeader("Content-Type", "text/html; charset=UTF-8");
         res.sendFile(indexPath);
       } else {
         console.error(`[Error] 404: Index file not found at ${indexPath}`);
-        res.status(404).send(`Application front-end not found. (Path: ${indexPath})`);
+        res.status(404).send("Front-end application not found. Please check build artifacts.");
       }
     });
   }
