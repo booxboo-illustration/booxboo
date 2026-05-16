@@ -5,6 +5,7 @@ import fs from "fs";
 import nodemailer from "nodemailer";
 import dotenv from "dotenv";
 import { fileURLToPath } from "url";
+import mime from "mime";
 
 dotenv.config();
 
@@ -143,31 +144,32 @@ async function startServer() {
     });
     app.use(vite.middlewares);
   } else {
-    // In production, we assume the server.cjs is in 'dist' or we are in the root.
-    // We try to find 'dist' directory reliably.
-    let distPath = path.resolve(process.cwd(), "dist");
+    console.log(`[Server] Production mode detected.`);
     
-    // If the current script is inside 'dist', then __dirname is 'dist'
-    if (__dirname.endsWith("dist") || __dirname.includes("/dist/")) {
-      distPath = __dirname;
-    } else if (fs.existsSync(path.join(__dirname, "dist"))) {
-      distPath = path.join(__dirname, "dist");
-    }
-
+    // In production, server.cjs is in 'dist/'
+    // Fallback logic for reliable directory matching
+    const currentDir = typeof __dirname !== 'undefined' ? __dirname : path.dirname(fileURLToPath(import.meta.url));
+    const distPath = currentDir.endsWith("dist") ? currentDir : path.join(process.cwd(), "dist");
     const indexPath = path.join(distPath, "index.html");
 
-    console.log(`[Server] Production mode detected.`);
     console.log(`[Server] Serving static files from: ${distPath}`);
-    console.log(`[Server] Base path (__dirname): ${__dirname}`);
-    console.log(`[Server] Current working directory: ${process.cwd()}`);
 
-    app.use(express.static(distPath));
+    // Serve static files with explicit MIME type handling to fix MIME errors on some platforms
+    app.use(express.static(distPath, {
+      setHeaders: (res, filePath) => {
+        const type = mime.getType(filePath);
+        if (type) {
+          res.setHeader("Content-Type", type);
+        }
+      }
+    }));
+
     app.get("*", (req, res) => {
       if (fs.existsSync(indexPath)) {
         res.sendFile(indexPath);
       } else {
         console.error(`[Error] 404: Index file not found at ${indexPath}`);
-        res.status(404).send(`Application front-end not found. Please verify the build. (Looking at: ${indexPath})`);
+        res.status(404).send(`Application front-end not found. (Path: ${indexPath})`);
       }
     });
   }
