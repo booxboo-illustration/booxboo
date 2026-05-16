@@ -155,9 +155,23 @@ async function startServer() {
     console.log(`[Server] Serving static files from: ${distPath}`);
 
     // Serve static files with explicit MIME type handling to fix MIME errors on some platforms
+    const mimeTypes: Record<string, string> = {
+      ".js": "application/javascript",
+      ".mjs": "application/javascript",
+      ".css": "text/css",
+      ".html": "text/html",
+      ".json": "application/json",
+      ".png": "image/png",
+      ".jpg": "image/jpeg",
+      ".jpeg": "image/jpeg",
+      ".svg": "image/svg+xml",
+      ".webp": "image/webp",
+    };
+
     app.use(express.static(distPath, {
       setHeaders: (res, filePath) => {
-        const type = mime.getType(filePath);
+        const ext = path.extname(filePath).toLowerCase();
+        const type = mimeTypes[ext] || mime.getType(filePath);
         if (type) {
           res.setHeader("Content-Type", type);
         }
