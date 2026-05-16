@@ -134,9 +134,12 @@ async function startServer() {
   app.use(express.static(publicDir));
 
   // Vite middleware for development
-  const isProduction = process.env.NODE_ENV === "production" || fs.existsSync(path.join(process.cwd(), "dist"));
+  const isProduction = process.env.NODE_ENV === "production";
+  const distPath = path.resolve(process.cwd(), "dist");
+  const indexPath = path.join(distPath, "index.html");
 
-  if (!isProduction) {
+  if (!isProduction && !fs.existsSync(distPath)) {
+    console.log("[Server] Running in Development mode with Vite...");
     const { createServer: createViteServer } = await import("vite");
     const vite = await createViteServer({
       server: { middlewareMode: true },
@@ -145,47 +148,35 @@ async function startServer() {
     app.use(vite.middlewares);
   } else {
     console.log(`[Server] Production mode detected.`);
+    console.log(`[Server] Content Root: ${distPath}`);
     
-    // In production, server.cjs is located in 'dist/'.
-    // If it's bundled there, __dirname will be the dist directory.
-    const currentDir = typeof __dirname !== 'undefined' ? __dirname : _dirname;
-    const distPath = currentDir.endsWith("dist") ? currentDir : path.join(process.cwd(), "dist");
-    const indexPath = path.join(distPath, "index.html");
+    if (!fs.existsSync(indexPath)) {
+      console.error(`[CRITICAL] Build output NOT FOUND at ${indexPath}. Frontend will not load.`);
+    }
 
-    console.log(`[Server] Serving static files from: ${distPath}`);
-    console.log(`[Server] Base Directory: ${currentDir}`);
-
-    // FORCE MIME Types for JS and CSS files before express.static
-    app.use((req, res, next) => {
-      const url = req.url.split('?')[0]; // Remove query strings
-      if (url.endsWith('.js') || url.endsWith('.mjs')) {
-        res.setHeader('Content-Type', 'application/javascript; charset=UTF-8');
-      } else if (url.endsWith('.css')) {
-        res.setHeader('Content-Type', 'text/css; charset=UTF-8');
-      }
-      next();
-    });
-
-    // Provide static files from dist
+    // 1. Serve static files with standard MIME types (handled by express.static)
+    // We serve this BEFORE the SPA fallback
     app.use(express.static(distPath, {
-      index: false, // We'll handle index.html manually at the end
+      maxAge: '1d',
       setHeaders: (res, filePath) => {
-        // Fallback or double-check for MIME types
-        const type = mime.getType(filePath);
-        if (type) {
-          res.setHeader("Content-Type", type);
+        // Ensure JS files have correct MIME type even if the OS misreports
+        if (filePath.endsWith('.js') || filePath.endsWith('.mjs')) {
+          res.setHeader('Content-Type', 'application/javascript; charset=UTF-8');
         }
       }
     }));
 
-    // For any other request, send the index.html (SPA Fallback)
+    // 2. SPA Fallback: ALL other requests return index.html
     app.get("*", (req, res) => {
+      // If it looks like a file request (has an extension) and reached here, it's a 404
+      if (path.extname(req.url)) {
+        return res.status(404).send("File not found");
+      }
+
       if (fs.existsSync(indexPath)) {
-        res.setHeader("Content-Type", "text/html; charset=UTF-8");
         res.sendFile(indexPath);
       } else {
-        console.error(`[Error] 404: Index file not found at ${indexPath}`);
-        res.status(404).send("Front-end application not found. Please check build artifacts.");
+        res.status(404).send("Application front-end not found. Please verify build.");
       }
     });
   }
