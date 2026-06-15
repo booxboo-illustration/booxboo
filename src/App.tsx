@@ -4,6 +4,8 @@ import React, { useState, useEffect, useCallback, useRef } from "react";
 import { BrowserRouter as Router, Routes, Route, Link, useParams, useLocation } from "react-router-dom";
 import ProjectDetail from "./components/ProjectDetail";
 import ProjectsPage from "./components/ProjectsPage";
+import AboutPage from "./components/AboutPage";
+import { getOptimizedImageUrl, getResponsiveImageAttrs } from "./imageUtils";
 
 const projects = [
   {
@@ -230,7 +232,7 @@ const projects = [
   {
     id: 12,
     title: "Beyond the Stars",
-    description: "우주를 사랑하는 아이의 시선으로 담은 꿈 / Dear Little Astronaut",
+    description: "우주를 사랑하는 아이의 시선으로 담은 꿈 / Personal Work",
     image: "/project-12.jpg",
     gallery: [
       "/project-12-gallery-1.jpg",  
@@ -240,36 +242,48 @@ const projects = [
     size: "small",
     year: "2025",
     client: "Personal Project",
-    projectType: "Personal Illustration Work",
-    tagline: "Infinite dreams in the eyes of a child.",
+    projectType: "Poster & Postcard Collection",
     aboutEn: "This project was inspired by the innocent and clear perspective of a child who deeply loves space. To a child, space is not just a distant place, but a dazzling playground that can be reached simply through imagination. I captured the child's heart, dreaming while gazing at the twinkling stars and the infinite Milky Way, using vibrant colors and rhythmical lines. I hope this illustration serves as a small passage that reminds someone of forgotten pure curiosity and infinite possibilities.",
     aboutKo: "우주를 무척이나 사랑하는 아이의 맑은 시선에서 영감을 받아 시작된 작업입니다. 아이에게 우주는 단순히 먼 곳이 아니라, 상상만으로도 닿을 수 있는 가장 가깝고도 눈부신 놀이터였습니다. 반짝이는 별과 무한한 은하수를 바라보며 꿈꾸는 아이의 마음을 다채로운 컬러와 리드미컬한 라인으로 담아보았습니다. 이 그림이 누군가에게는 잊고 지냈던 순수한 호기심과 무한한 가능성을 떠올리게 하는 작은 통로가 되기를 바랍니다.",
   },
   {
     id: 13,
-    title: "Winter Silence",
-    description: "윈터 사일런스 / Minimalist Winter Scenes",
+    title: "Running Crew",
+    description: "러닝 크루 / Personal Work",
     image: "/project-13.jpg",
     gallery: [
-      "/project-13-gallery-1.jpg",
-      "/project-13-gallery-2.jpg",
-      "/project-13-gallery-3.jpg",
-      "/project-13-gallery-4.jpg",
+      "/project-13-gallery-1.mp4",
+      "/project-13-gallery-2.png",
+      "/project-13-gallery-3.png",
+      "/project-13-gallery-4.mp4",
     ],
     size: "small",
+    year: "2025",
+    client: "Personal Project",
+    projectType: "Poster & Postcard Collection",
+    aboutEn: "There are moments when running changes the way we feel. After just a short run, the body feels lighter, and complicated thoughts become a little simpler. I wanted to capture the bright energy and living rhythm that emerge when people run together. A small movement can be enough to make a day feel better.",
+    aboutKo: "러닝을 하다 보면 기분이 바뀌는 순간이 있어요. 조금 달렸을 뿐인데 몸이 가벼워지고, 복잡했던 생각은 단순해집니다. 함께 달리는 사람들에게서 느껴지는 밝은 에너지와 살아있는 리듬이 좋아서 그렸어요. 작은 움직임이 좋은 하루를 만드는 순간들을 담았습니다.",
   },
   {
     id: 14,
-    title: "Flower Market",
-    description: "플라워 마켓 / Vibrant Floral Illustrations",
+    title: "GQ Magazine 01.2026",
+    description: "2026년 GQ 매거진 1월호 일러스트 / Magazine Editorial Illustration",
     image: "/project-14.jpg",
+    detailImage: "/project-14-gallery-1.jpg",
     gallery: [
-      "/project-14-gallery-1.jpg",
       "/project-14-gallery-2.jpg",
       "/project-14-gallery-3.jpg",
       "/project-14-gallery-4.jpg",
+      "/project-14-gallery-5.jpg",
+      "/project-14-gallery-6.jpg",
+      "/project-14-gallery-7.jpg",
     ],
     size: "small",
+    year: "2026",
+    client: "GQ MAGAZINE",
+    projectType: "EDITORIAL ILLUSTRATION",
+    aboutEn: "From scalp care and facial treatments to full-body rituals, this illustration captures the process of seshin therapy—awakening the senses and bringing the body back to life.",
+    aboutKo: "2026년 GQ 매거진 01월호 그루밍 콘텐츠 일러스트를 제작했습니다. 새해를 맞아 몸을 정돈하는 시간을 그렸습니다. 두피부터 얼굴, 보디 케어까지. 몸의 감각을 다시 깨우는 세신 테라피의 과정을 일러스트로 담았습니다.",
   },
   {
     id: 15,
@@ -316,7 +330,7 @@ function AppContent() {
   }, [handleScroll]);
 
   const getProjectImage = useCallback((id: number, defaultImg: string) => {
-    return defaultImg;
+    return getOptimizedImageUrl(defaultImg);
   }, []);
 
   return (
@@ -333,6 +347,9 @@ function AppContent() {
             projects={projects} 
             getProjectImage={getProjectImage} 
           />
+        } />
+        <Route path="/about" element={
+          <AboutPage />
         } />
         <Route path="/project/:id" element={
           <ProjectDetail 
@@ -384,7 +401,9 @@ const HeroCarousel = React.memo(({ projects, getProjectImage }: { projects: any[
           <div className="absolute inset-0 block group">
             <div className="absolute inset-0 bg-black/40 z-10 group-hover:bg-black/30 transition-colors pointer-events-none" />
             <img
-              src={getProjectImage(featuredProjects[currentIndex].id, featuredProjects[currentIndex].image)}
+              src={getOptimizedImageUrl(featuredProjects[currentIndex].image, 1200)}
+              srcSet={getResponsiveImageAttrs(featuredProjects[currentIndex].image).srcSet}
+              sizes="100vw"
               alt={featuredProjects[currentIndex].title}
               className="w-full h-full object-cover transition-transform duration-[1500ms] group-hover:scale-105"
               referrerPolicy="no-referrer"
@@ -424,7 +443,7 @@ const HeroCarousel = React.memo(({ projects, getProjectImage }: { projects: any[
               <div className="space-y-4 md:space-y-6">
                 <Link to={`/project/${featuredProjects[currentIndex].id}`} className="block hover:opacity-80 transition-opacity">
                   {!featuredProjects[currentIndex].hideTitleOnGrid && (
-                    <h1 className={`text-white text-[34px] sm:text-6xl md:text-8xl font-bold tracking-tighter leading-[1.0] ${
+                    <h1 className={`text-white text-5xl sm:text-6xl md:text-8xl font-bold tracking-tighter leading-[1.0] ${
                       featuredProjects[currentIndex].id === 2 ? 'max-w-none' : 
                       featuredProjects[currentIndex].id === 4 ? 'max-w-none' : 
                       'max-w-[10ch]'
@@ -438,7 +457,7 @@ const HeroCarousel = React.memo(({ projects, getProjectImage }: { projects: any[
                     </h1>
                   )}
                 </Link>
-                <p className="text-white/90 text-sm md:text-2xl font-bold tracking-normal max-w-2xl translate-x-[2px] md:translate-x-[6px]">
+                <p className="text-white/90 text-lg md:text-2xl font-bold tracking-normal max-w-2xl translate-x-[2px] md:translate-x-[6px]">
                   {featuredProjects[currentIndex].description.split('/')[0].trim()}
                 </p>
               </div>
@@ -489,7 +508,9 @@ const ProjectCard = React.memo(({ project, idx, getProjectImage }: any) => (
     >
       <div className="aspect-[4/3] overflow-hidden bg-neutral-900 mb-4 md:mb-6">
         <img
-          src={getProjectImage(project.id, project.image)}
+          src={getOptimizedImageUrl(project.image, 800)}
+          srcSet={getResponsiveImageAttrs(project.image).srcSet}
+          sizes={getResponsiveImageAttrs(project.image).sizes}
           alt={project.title}
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           referrerPolicy="no-referrer"
@@ -553,8 +574,8 @@ const Home = React.memo(({ isScrolled, getProjectImage }: any) => {
     }
   };
 
-  const randomizedProjects = React.useMemo(() => {
-    return [...projects].sort(() => Math.random() - 0.5).slice(0, 6);
+  const homeProjects = React.useMemo(() => {
+    return [...projects].sort((a, b) => a.id - b.id);
   }, []);
 
   useEffect(() => {
@@ -591,11 +612,8 @@ const Home = React.memo(({ isScrolled, getProjectImage }: any) => {
             <Link to="/projects" className="hover:opacity-50 transition-opacity">
               WORK
             </Link>
-            <Link to="/#about" className="hover:opacity-50 transition-opacity">
+            <Link to="/about" className="hover:opacity-50 transition-opacity">
               About
-            </Link>
-            <Link to="/#contact" className="hover:opacity-50 transition-opacity">
-              Contact
             </Link>
           </div>
           
@@ -625,18 +643,11 @@ const Home = React.memo(({ isScrolled, getProjectImage }: any) => {
               WORK
             </Link>
             <Link 
-              to="/#about" 
+              to="/about" 
               onClick={() => setIsMenuOpen(false)}
               className="hover:text-neutral-500 transition-colors"
             >
               About
-            </Link>
-            <Link 
-              to="/#contact" 
-              onClick={() => setIsMenuOpen(false)}
-              className="hover:text-neutral-500 transition-colors"
-            >
-              Contact
             </Link>
           </motion.div>
         )}
@@ -655,19 +666,19 @@ const Home = React.memo(({ isScrolled, getProjectImage }: any) => {
           viewport={{ once: true }}
           className="space-y-4 md:space-y-6"
         >
-          <p className="text-2xl sm:text-3xl md:text-[40px] font-normal leading-tight md:leading-[38px] tracking-[-0.03em]">
+          <p className="text-[17px] sm:text-2xl md:text-[32px] font-normal leading-tight md:leading-[1.2] tracking-[-0.02em]">
             <span className="font-semibold">BOOxBOO</span> is a line illustrator
           </p>
-          <p className="text-2xl sm:text-3xl md:text-[40px] font-normal leading-tight md:leading-[38px] tracking-[-0.03em]">
+          <p className="text-[17px] sm:text-2xl md:text-[32px] font-normal leading-tight md:leading-[1.2] tracking-[-0.02em]">
             capturing small moments of everyday life.
           </p>
-          <p className="text-2xl sm:text-3xl md:text-[40px] font-normal leading-tight md:leading-[38px] tracking-[-0.03em]">
+          <p className="text-[17px] sm:text-2xl md:text-[32px] font-normal leading-tight md:leading-[1.2] tracking-[-0.02em]">
             Guided by rhythm and harmony, we express the vibrant
           </p>
-          <p className="text-2xl sm:text-3xl md:text-[40px] font-normal leading-tight md:leading-[38px] tracking-[-0.03em]">
+          <p className="text-[17px] sm:text-2xl md:text-[32px] font-normal leading-tight md:leading-[1.2] tracking-[-0.02em]">
             energy within the ordinary. Through these small moments,
           </p>
-          <p className="text-2xl sm:text-3xl md:text-[40px] font-normal leading-tight md:leading-[38px] tracking-[-0.03em]">
+          <p className="text-[17px] sm:text-2xl md:text-[32px] font-normal leading-tight md:leading-[1.2] tracking-[-0.02em]">
             we share warmth and a gentle sense of positivity.
           </p>
         </motion.div>
@@ -687,7 +698,7 @@ const Home = React.memo(({ isScrolled, getProjectImage }: any) => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10 md:gap-y-16">
-            {randomizedProjects.map((project, idx) => (
+            {homeProjects.map((project, idx) => (
               <ProjectCard 
                 key={project.id} 
                 project={project} 

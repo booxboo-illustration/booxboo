@@ -1,5 +1,6 @@
 {
   "name": "BOOxBOO",
   "description": "BOOxBOO is an illustration-based creative studio capturing the vibrant energy of daily life through bold colors and dynamic characters.",
-  "requestFramePermissions": []
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

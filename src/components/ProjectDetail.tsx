@@ -2,6 +2,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "motion/react";
 import { ArrowLeft, Share2, Heart, X, ArrowRight, Play, Menu as MenuIcon } from "lucide-react";
+import { getOptimizedImageUrl, getResponsiveImageAttrs } from "../imageUtils";
 
 interface Project {
   id: number;
@@ -91,95 +92,123 @@ const ProjectDetail = React.memo(({ projects, getProjectImage }: ProjectDetailPr
     // Group gallery items into rows (1, 2, or 4 items per row)
     const galleryRows: string[][] = [];
     console.log('Gallery Items:', gallery);
-    for (let i = 0; i < gallery.length; i++) {
-      const current = gallery[i];
-      const next = gallery[i + 1];
-      
-      // Check for 1/4 layout (4 items)
-      const isQuadStart = current && (current.toLowerCase().includes('gallery-11') || current.toLowerCase().includes('gallery11')) && project.id !== 1;
-      if (isQuadStart && i + 3 < gallery.length) {
-        galleryRows.push([gallery[i], gallery[i+1], gallery[i+2], gallery[i+3]]);
-        i += 3;
-        continue;
+
+    if (project.id === 14) {
+      // Custom gallery layout for Project 14:
+      // - project-14-gallery-2, project-14-gallery-3, project-14-gallery-4 in a 3-column row
+      // - Others in individual 1-column rows
+      const triple: string[] = [];
+      const singles: string[] = [];
+
+      gallery.forEach((item) => {
+        if (
+          item.toLowerCase().includes('gallery-2') ||
+          item.toLowerCase().includes('gallery-3') ||
+          item.toLowerCase().includes('gallery-4')
+        ) {
+          triple.push(item);
+        } else {
+          singles.push(item);
+        }
+      });
+
+      if (triple.length > 0) {
+        galleryRows.push(triple);
       }
+      singles.forEach((item) => {
+        galleryRows.push([item]);
+      });
+    } else {
+      for (let i = 0; i < gallery.length; i++) {
+        const current = gallery[i];
+        const next = gallery[i + 1];
+        
+        // Check for 1/4 layout (4 items)
+        const isQuadStart = current && (current.toLowerCase().includes('gallery-11') || current.toLowerCase().includes('gallery11')) && project.id !== 1;
+        if (isQuadStart && i + 3 < gallery.length) {
+          galleryRows.push([gallery[i], gallery[i+1], gallery[i+2], gallery[i+3]]);
+          i += 3;
+          continue;
+        }
 
-      // Check for 1/3 layout (3 items) for Project 1, Project 6, and Project 8
-      const isTripleStart = (project.id === 1 && current && current.toLowerCase().includes('gallery-13')) ||
-                            (project.id === 6 && current && current.toLowerCase().includes('gallery-2')) ||
-                            (project.id === 8 && current && current.toLowerCase().includes('gallery-2'));
-      if (isTripleStart && i + 2 < gallery.length) {
-        galleryRows.push([gallery[i], gallery[i+1], gallery[i+2]]);
-        i += 2;
-        continue;
-      }
+        // Check for 1/3 layout (3 items) for Project 1, Project 6, and Project 8
+        const isTripleStart = (project.id === 1 && current && current.toLowerCase().includes('gallery-13')) ||
+                              (project.id === 6 && current && current.toLowerCase().includes('gallery-2')) ||
+                              (project.id === 8 && current && current.toLowerCase().includes('gallery-2'));
+        if (isTripleStart && i + 2 < gallery.length) {
+          galleryRows.push([gallery[i], gallery[i+1], gallery[i+2]]);
+          i += 2;
+          continue;
+        }
 
-      // Check if current and next should be in 1/2 layout
-      let isPairStart = false;
-      let isPairEnd = false;
+        // Check if current and next should be in 1/2 layout
+        let isPairStart = false;
+        let isPairEnd = false;
 
-      if (project.id === 1) {
-        // Project 1 specific pairing: 3-4, 7-6 (swapped), 10-11
-        isPairStart = current && (
-          current.toLowerCase().includes('gallery-3') || 
-          current.toLowerCase().includes('gallery-7') ||
-          current.toLowerCase().includes('gallery-10')
-        );
-        isPairEnd = next && (
-          next.toLowerCase().includes('gallery-4') || 
-          next.toLowerCase().includes('gallery-6') ||
-          next.toLowerCase().includes('gallery-11')
-        );
-      } else if (project.id === 2) {
-        // Project 2 specific pairing: 4-5, 6-7
-        isPairStart = current && (
-          current.toLowerCase().includes('gallery-4') || 
-          current.toLowerCase().includes('gallery-6')
-        );
-        isPairEnd = next && (
-          next.toLowerCase().includes('gallery-5') || 
-          next.toLowerCase().includes('gallery-7')
-        );
-      } else if (project.id === 3) {
-        // Project 3 specific pairing: 4-5
-        isPairStart = current && (
-          current.toLowerCase().includes('gallery-4')
-        );
-        isPairEnd = next && (
-          next.toLowerCase().includes('gallery-5')
-        );
-      } else if (project.id === 7) {
-        // Project 7 specific pairing: 1-2
-        isPairStart = current && (
-          current.toLowerCase().includes('gallery-1')
-        );
-        isPairEnd = next && (
-          next.toLowerCase().includes('gallery-2')
-        );
-      } else if (project.id === 12) {
-        // Project 12 specific pairing: 2-3
-        isPairStart = current && current.toLowerCase().includes('gallery-2');
-        isPairEnd = next && next.toLowerCase().includes('gallery-3');
-      } else {
-        // Default pairing for other projects (excluding Project 6)
-        isPairStart = project.id !== 6 && current && (
-          current.toLowerCase().includes('gallery-6')
-        );
-        isPairEnd = project.id !== 6 && next && (
-          next.toLowerCase().includes('gallery-7')
-        );
-      }
+        if (project.id === 1) {
+          // Project 1 specific pairing: 3-4, 7-6 (swapped), 10-11
+          isPairStart = current && (
+            current.toLowerCase().includes('gallery-3') || 
+            current.toLowerCase().includes('gallery-7') ||
+            current.toLowerCase().includes('gallery-10')
+          );
+          isPairEnd = next && (
+            next.toLowerCase().includes('gallery-4') || 
+            next.toLowerCase().includes('gallery-6') ||
+            next.toLowerCase().includes('gallery-11')
+          );
+        } else if (project.id === 2) {
+          // Project 2 specific pairing: 4-5, 6-7
+          isPairStart = current && (
+            current.toLowerCase().includes('gallery-4') || 
+            current.toLowerCase().includes('gallery-6')
+          );
+          isPairEnd = next && (
+            next.toLowerCase().includes('gallery-5') || 
+            next.toLowerCase().includes('gallery-7')
+          );
+        } else if (project.id === 3) {
+          // Project 3 specific pairing: 4-5
+          isPairStart = current && (
+            current.toLowerCase().includes('gallery-4')
+          );
+          isPairEnd = next && (
+            next.toLowerCase().includes('gallery-5')
+          );
+        } else if (project.id === 7) {
+          // Project 7 specific pairing: 1-2
+          isPairStart = current && (
+            current.toLowerCase().includes('gallery-1')
+          );
+          isPairEnd = next && (
+            next.toLowerCase().includes('gallery-2')
+          );
+        } else if (project.id === 12) {
+          // Project 12 specific pairing: 2-3
+          isPairStart = current && current.toLowerCase().includes('gallery-2');
+          isPairEnd = next && next.toLowerCase().includes('gallery-3');
+        } else {
+          // Default pairing for other projects (excluding Project 6)
+          isPairStart = project.id !== 6 && current && (
+            current.toLowerCase().includes('gallery-6')
+          );
+          isPairEnd = project.id !== 6 && next && (
+            next.toLowerCase().includes('gallery-7')
+          );
+        }
 
-      console.log(`Checking pair: ${current} & ${next} | isPairStart: ${isPairStart}, isPairEnd: ${isPairEnd}`);
+        console.log(`Checking pair: ${current} & ${next} | isPairStart: ${isPairStart}, isPairEnd: ${isPairEnd}`);
 
-      if (isPairStart && isPairEnd) {
-        console.log('Grouping 1/2 layout pair');
-        galleryRows.push([current, next]);
-        i++; // Skip next
-      } else {
-        galleryRows.push([current]);
+        if (isPairStart && isPairEnd) {
+          console.log('Grouping 1/2 layout pair');
+          galleryRows.push([current, next]);
+          i++; // Skip next
+        } else {
+          galleryRows.push([current]);
+        }
       }
     }
-  console.log('Gallery Rows:', galleryRows);
+    console.log('Gallery Rows:', galleryRows);
 
   const isVideo = (url: string) => {
     return url.toLowerCase().endsWith('.mp4') || 
@@ -219,7 +248,9 @@ const ProjectDetail = React.memo(({ projects, getProjectImage }: ProjectDetailPr
       return (
         <div className="relative group cursor-pointer w-full" onClick={() => toggleVideo(mediaUrl)}>
           <img 
-            src={thumbnailUrl} 
+            src={getOptimizedImageUrl(thumbnailUrl, 800)} 
+            srcSet={getResponsiveImageAttrs(thumbnailUrl).srcSet}
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 50vw"
             alt={alt} 
             className={className} 
             loading={loading} 
@@ -266,7 +297,9 @@ const ProjectDetail = React.memo(({ projects, getProjectImage }: ProjectDetailPr
     }
     return (
       <img 
-        src={mediaUrl} 
+        src={getOptimizedImageUrl(mediaUrl, 1200)} 
+        srcSet={getResponsiveImageAttrs(mediaUrl).srcSet}
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 100vw"
         alt={alt} 
         className={className}
         referrerPolicy="no-referrer"

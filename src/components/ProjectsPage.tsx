@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { motion } from "motion/react";
 import { ArrowLeft, Menu as MenuIcon, X } from "lucide-react";
 import { AnimatePresence } from "motion/react";
+import { getOptimizedImageUrl, getResponsiveImageAttrs } from "../imageUtils";
 
 interface Project {
   id: number;
@@ -31,7 +32,9 @@ const ProjectItem = React.memo(({ project, idx, getProjectImage }: any) => (
     >
       <div className="aspect-[4/3] overflow-hidden bg-neutral-900 mb-4 md:mb-6">
         <img
-          src={getProjectImage(project.id, project.image)}
+          src={getOptimizedImageUrl(project.image, 800)}
+          srcSet={getResponsiveImageAttrs(project.image).srcSet}
+          sizes={getResponsiveImageAttrs(project.image).sizes}
           alt={project.title}
           className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
           referrerPolicy="no-referrer"

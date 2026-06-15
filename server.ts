@@ -4,19 +4,87 @@ import path from "path";
 import fs from "fs";
 import nodemailer from "nodemailer";
 import dotenv from "dotenv";
-import { fileURLToPath } from "url";
-import mime from "mime";
+import sharp from "sharp";
 
 dotenv.config();
-
-const _filename = fileURLToPath(import.meta.url);
-const _dirname = path.dirname(_filename);
 
 async function startServer() {
   const app = express();
   const PORT = 3000;
 
   app.use(express.json());
+
+  // Ensure public directory exists
+  const publicDir = path.join(process.cwd(), "public");
+  if (!fs.existsSync(publicDir)) {
+    fs.mkdirSync(publicDir);
+  }
+
+  const distPath = path.resolve(process.cwd(), "dist");
+
+  // Dynamic Image Optimization API
+  app.get("/api/image", async (req, res) => {
+    const srcParam = req.query.src as string;
+    const widthParam = req.query.w as string;
+    const qualityParam = req.query.q as string;
+
+    if (!srcParam) {
+      return res.status(400).send("src parameter is required");
+    }
+
+    // Prevent directory traversal and normalize path
+    const filename = path.basename(srcParam);
+    
+    // Find the image file in public or dist directory
+    let imagePath = path.join(publicDir, filename);
+    if (!fs.existsSync(imagePath)) {
+      imagePath = path.join(distPath, filename);
+    }
+
+    if (!fs.existsSync(imagePath) || fs.statSync(imagePath).isDirectory()) {
+      return res.status(404).send("Image not found");
+    }
+
+    const ext = path.extname(filename).toLowerCase();
+    
+    // Skip resizing for videos or non-image assets
+    if (ext === ".mp4" || ext === ".mov" || ext === ".webm") {
+      return res.redirect(srcParam);
+    }
+
+    try {
+      let width = widthParam ? parseInt(widthParam, 10) : null;
+      let quality = qualityParam ? parseInt(qualityParam, 10) : 80;
+
+      if (width && (isNaN(width) || width <= 0 || width > 3000)) {
+        width = null;
+      }
+      if (isNaN(quality) || quality <= 0 || quality > 100) {
+        quality = 80;
+      }
+
+      let pipeline = sharp(imagePath);
+      const metadata = await pipeline.metadata();
+
+      if (width && metadata.width && metadata.width > width) {
+        pipeline = pipeline.resize(width, null, {
+          withoutEnlargement: true,
+          fit: "cover"
+        });
+      }
+
+      // Convert to WebP format for optimal lightweight modern load with strong caching headers
+      res.setHeader("Content-Type", "image/webp");
+      res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
+
+      const buffer = await pipeline.webp({ quality }).toBuffer();
+      return res.send(buffer);
+    } catch (error) {
+      console.error("Image optimization error:", error);
+      // Fallback to sending the original file as-is
+      return res.sendFile(imagePath);
+    }
+  });
 
   // Email Transporter
   const getTransporter = () => {
@@ -88,12 +156,6 @@ async function startServer() {
     }
   });
 
-  // Ensure public directory exists
-  const publicDir = path.join(process.cwd(), "public");
-  if (!fs.existsSync(publicDir)) {
-    fs.mkdirSync(publicDir);
-  }
-
   // Configure multer for file uploads
   const storage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -135,7 +197,6 @@ async function startServer() {
 
   // Vite middleware for development
   const isProduction = process.env.NODE_ENV === "production";
-  const distPath = path.resolve(process.cwd(), "dist");
   const indexPath = path.join(distPath, "index.html");
 
   if (!isProduction && !fs.existsSync(distPath)) {
