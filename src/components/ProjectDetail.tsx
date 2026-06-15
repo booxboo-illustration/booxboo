@@ -329,11 +329,8 @@ const ProjectDetail = React.memo(({ projects, getProjectImage }: ProjectDetailPr
             <Link to="/projects" className="hover:opacity-50 transition-opacity">
               WORK
             </Link>
-            <Link to="/#about" className="hover:opacity-50 transition-opacity">
+            <Link to="/about" className="hover:opacity-50 transition-opacity">
               About
-            </Link>
-            <Link to="/#contact" className="hover:opacity-50 transition-opacity">
-              Contact
             </Link>
           </div>
           
@@ -363,18 +360,11 @@ const ProjectDetail = React.memo(({ projects, getProjectImage }: ProjectDetailPr
               WORK
             </Link>
             <Link 
-              to="/#about" 
+              to="/about" 
               onClick={() => setIsMenuOpen(false)}
               className="hover:text-neutral-500 transition-colors"
             >
               About
-            </Link>
-            <Link 
-              to="/#contact" 
-              onClick={() => setIsMenuOpen(false)}
-              className="hover:text-neutral-500 transition-colors"
-            >
-              Contact
             </Link>
           </motion.div>
         )}
@@ -409,7 +399,14 @@ const ProjectDetail = React.memo(({ projects, getProjectImage }: ProjectDetailPr
           transition={{ delay: 0.4, duration: 1 }}
           className="overflow-hidden"
         >
-          {renderMedia(imageUrl, project.title, "w-full h-auto block", "eager")}
+          {renderMedia(
+            imageUrl, 
+            project.title, 
+            project.id === 7 
+              ? "max-h-[1000px] w-auto max-w-full mx-auto object-contain block" 
+              : "w-full h-auto block", 
+            "eager"
+          )}
         </motion.div>
       </section>
 
@@ -473,23 +470,6 @@ const ProjectDetail = React.memo(({ projects, getProjectImage }: ProjectDetailPr
                 <div key={itemIndex} className="w-full">
                   <div className="relative group min-h-[100px] bg-gray-100 flex items-center justify-center">
                     {renderMedia(item, `Detail ${rowIndex}-${itemIndex}`, "w-full h-auto", "lazy")}
-                    <img 
-                      src={item} 
-                      alt="debug" 
-                      className="hidden" 
-                      onError={(e) => {
-                        console.error(`Failed to load image: ${item}`, e);
-                        const target = e.target as HTMLImageElement;
-                        const parent = target.parentElement;
-                        if (parent) {
-                          const errorMsg = document.createElement('div');
-                          errorMsg.className = "absolute inset-0 flex items-center justify-center bg-red-50 text-red-500 text-xs p-2 text-center";
-                          errorMsg.innerText = `Failed to load: ${item}`;
-                          parent.appendChild(errorMsg);
-                        }
-                      }}
-                      onLoad={() => console.log(`Successfully loaded image: ${item}`)}
-                    />
                   </div>
                 </div>
               ))}

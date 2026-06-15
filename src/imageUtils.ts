@@ -4,6 +4,15 @@
 export const getOptimizedImageUrl = (src: string, width?: number, quality = 80): string => {
   if (!src) return "";
   
+  // Prevent double-optimization: if it already points to our optimization API,
+  // extract the real raw path from its 'src' query parameter.
+  if (src.includes("/api/image")) {
+    const match = src.match(/[?&]src=([^&]+)/);
+    if (match) {
+      src = decodeURIComponent(match[1]);
+    }
+  }
+  
   // Return absolute or video URLs as-is
   if (
     src.startsWith("http://") ||

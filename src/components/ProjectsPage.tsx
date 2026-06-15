@@ -79,11 +79,8 @@ const ProjectsPage = React.memo(({ projects, getProjectImage }: ProjectsPageProp
             <Link to="/projects" className="hover:opacity-50 transition-opacity">
               WORK
             </Link>
-            <Link to="/#about" className="hover:opacity-50 transition-opacity">
+            <Link to="/about" className="hover:opacity-50 transition-opacity">
               About
-            </Link>
-            <Link to="/#contact" className="hover:opacity-50 transition-opacity text-black">
-              Contact
             </Link>
           </div>
           
@@ -113,18 +110,11 @@ const ProjectsPage = React.memo(({ projects, getProjectImage }: ProjectsPageProp
               WORK
             </Link>
             <Link 
-              to="/#about" 
+              to="/about" 
               onClick={() => setIsMenuOpen(false)}
               className="hover:text-neutral-500 transition-colors"
             >
               About
-            </Link>
-            <Link 
-              to="/#contact" 
-              onClick={() => setIsMenuOpen(false)}
-              className="hover:text-neutral-500 transition-colors"
-            >
-              Contact
             </Link>
           </motion.div>
         )}

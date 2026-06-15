@@ -57,7 +57,7 @@ const AboutPage: React.FC = () => {
                <div className="space-y-4">
                 <h2 className="text-neutral-500 uppercase tracking-widest text-xs md:text-sm font-bold">Clients & Collaborations</h2>
                 <div className="text-[17px] md:text-[20px] font-semibold leading-relaxed text-neutral-300">
-                   <p>Times Square Seoul, Busan City, GQ Magazine, Meunder, and more.</p>
+                   <p>Times Square Seoul, EBS, UBASE, Hyundai HDC, Busan City, GQ Magazine, LOTTE R&D, Meunder, and more.</p>
                 </div>
               </div>
             </div>

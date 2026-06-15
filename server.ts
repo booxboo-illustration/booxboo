@@ -4,7 +4,6 @@ import path from "path";
 import fs from "fs";
 import nodemailer from "nodemailer";
 import dotenv from "dotenv";
-import sharp from "sharp";
 
 dotenv.config();
 
@@ -63,7 +62,16 @@ async function startServer() {
         quality = 80;
       }
 
-      let pipeline = sharp(imagePath);
+      // Lazy load sharp with exception safety for environments missing compile binaries
+      let sharpModule;
+      try {
+        sharpModule = (await import("sharp")).default;
+      } catch (sharpLoadError) {
+        console.warn("[Image Optimizer] fallback: sharp native module failed to load", sharpLoadError);
+        return res.sendFile(imagePath);
+      }
+
+      let pipeline = sharpModule(imagePath);
       const metadata = await pipeline.metadata();
 
       if (width && metadata.width && metadata.width > width) {
