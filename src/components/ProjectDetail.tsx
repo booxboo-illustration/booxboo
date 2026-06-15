@@ -26,6 +26,53 @@ interface ProjectDetailProps {
   getProjectImage: (id: number, defaultImg: string) => string;
 }
 
+interface LoadingImageProps {
+  src: string;
+  srcSet?: string;
+  sizes?: string;
+  alt: string;
+  className?: string;
+  wrapperClassName?: string;
+  loading?: "lazy" | "eager";
+  decoding?: "async" | "auto" | "sync";
+  referrerPolicy?: React.HTMLAttributeReferrerPolicy;
+  style?: React.CSSProperties;
+  onLoad?: React.ReactEventHandler<HTMLImageElement>;
+  onError?: React.ReactEventHandler<HTMLImageElement>;
+}
+
+const LoadingImage = ({ className = "", wrapperClassName = "", onLoad, onError, style, ...props }: LoadingImageProps) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [hasError, setHasError] = useState(false);
+
+  return (
+    <div className={`relative w-full min-h-[160px] overflow-hidden bg-neutral-100 ${wrapperClassName}`}>
+      {!isLoaded && !hasError && (
+        <div className="absolute inset-0 z-10 flex items-center justify-center">
+          <div className="h-6 w-6 rounded-full border-2 border-neutral-300 border-t-neutral-900 animate-spin" aria-label="Loading image" />
+        </div>
+      )}
+      <img
+        {...props}
+        className={className}
+        style={{
+          ...style,
+          opacity: isLoaded ? 1 : 0,
+          transition: [style?.transition, "opacity 700ms ease-out", "transform 1000ms ease-out"].filter(Boolean).join(", "),
+        }}
+        onLoad={(event) => {
+          setIsLoaded(true);
+          onLoad?.(event);
+        }}
+        onError={(event) => {
+          setHasError(true);
+          onError?.(event);
+        }}
+      />
+    </div>
+  );
+};
+
 const ProjectDetail = React.memo(({ projects, getProjectImage }: ProjectDetailProps) => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
@@ -247,7 +294,7 @@ const ProjectDetail = React.memo(({ projects, getProjectImage }: ProjectDetailPr
     if (isVideoThumbnail && !playingVideos.has(mediaUrl)) {
       return (
         <div className="relative group cursor-pointer w-full" onClick={() => toggleVideo(mediaUrl)}>
-          <img 
+          <LoadingImage 
             src={getOptimizedImageUrl(thumbnailUrl, 800)} 
             srcSet={getResponsiveImageAttrs(thumbnailUrl).srcSet}
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 50vw"
@@ -296,7 +343,7 @@ const ProjectDetail = React.memo(({ projects, getProjectImage }: ProjectDetailPr
       );
     }
     return (
-      <img 
+      <LoadingImage 
         src={getOptimizedImageUrl(mediaUrl, 1200)} 
         srcSet={getResponsiveImageAttrs(mediaUrl).srcSet}
         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 75vw, 100vw"
@@ -544,10 +591,11 @@ const ProjectDetail = React.memo(({ projects, getProjectImage }: ProjectDetailPr
                     viewport={{ once: true }}
                   >
                     <div className="aspect-[4/3] overflow-hidden bg-neutral-900 mb-4 md:mb-6">
-                      <img
+                      <LoadingImage
                         src={getProjectImage(p.id, p.image)}
                         alt={p.title}
                         className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105"
+                        wrapperClassName="w-full h-full"
                         referrerPolicy="no-referrer"
                         loading="lazy"
                       />
