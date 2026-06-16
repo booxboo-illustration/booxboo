@@ -13,6 +13,8 @@ interface Project {
   gallery?: string[];
   size: string;
   year?: string;
+  brand?: string;
+  event?: string;
   client?: string;
   locations?: string;
   projectType?: string;
@@ -468,6 +470,8 @@ const ProjectDetail = React.memo(({ projects, getProjectImage }: ProjectDetailPr
               </h2>
               <div className="space-y-1 text-[10px] md:text-xs font-bold tracking-widest uppercase text-neutral-400">
                 {project.year && <p>Year — {project.year}</p>}
+                {project.brand && <p>Brand — {project.brand}</p>}
+                {project.event && <p>Event — {project.event}</p>}
                 {project.client && <p>Client — {project.client}</p>}
                 {project.locations && <p>Locations — {project.locations}</p>}
                 {project.projectType && <p>Project — {project.projectType}</p>}
