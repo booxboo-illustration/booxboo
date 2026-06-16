@@ -487,8 +487,7 @@ const ProjectDetail = React.memo(({ projects, getProjectImage }: ProjectDetailPr
 
           {/* Right Column */}
           <div className="lg:col-span-12 xl:col-span-7 space-y-12 md:space-y-20 font-sans">
-            <div className="space-y-6 md:space-y-8 md:pr-[10px]">
-              <h3 className="text-sm md:text-[18px] font-black tracking-[0.2em] uppercase text-neutral-900 font-sans translate-y-0 md:translate-y-[3px]">About the WORK</h3>
+            <div className="md:pr-[10px]">
               <div className="space-y-6 md:space-y-8">
                 <div className="space-y-4 md:space-y-6 text-base md:text-[18px] text-neutral-700 leading-relaxed font-semibold">
                   <p>
