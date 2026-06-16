@@ -481,12 +481,12 @@ const HeroCarousel = React.memo(({ projects, getProjectImage }: { projects: any[
       </AnimatePresence>
 
       {/* Progress Indicators */}
-      <div className="absolute bottom-12 left-10 md:left-20 z-30 flex gap-4">
+      <div className="absolute bottom-12 left-6 right-6 md:left-20 md:right-auto z-30 flex gap-3 md:gap-4 md:w-auto">
         {featuredProjects.map((_, idx) => (
           <button
             key={idx}
             onClick={() => setCurrentIndex(idx)}
-            className="group relative h-[2px] w-12 md:w-24 bg-white/20 overflow-hidden transition-all hover:h-[4px]"
+            className="group relative h-[2px] flex-1 md:flex-none md:w-24 bg-white/20 overflow-hidden transition-all hover:h-[4px]"
           >
             <motion.div
               className="absolute inset-0 bg-white"
