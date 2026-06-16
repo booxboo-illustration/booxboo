@@ -48,7 +48,7 @@ const LoadingImage = ({ className = "", wrapperClassName = "", onLoad, onError, 
   const [hasError, setHasError] = useState(false);
 
   return (
-    <div className={`relative w-full min-h-[160px] overflow-hidden bg-neutral-100 ${wrapperClassName}`}>
+    <div className={`relative w-full overflow-hidden ${isLoaded ? "bg-transparent" : "min-h-[160px] bg-neutral-100"} ${wrapperClassName}`}>
       {!isLoaded && !hasError && (
         <div className="absolute inset-0 z-10 flex items-center justify-center">
           <div className="h-6 w-6 rounded-full border-2 border-neutral-300 border-t-neutral-900 animate-spin" aria-label="Loading image" />
@@ -519,7 +519,7 @@ const ProjectDetail = React.memo(({ projects, getProjectImage }: ProjectDetailPr
             >
               {row.map((item, itemIndex) => (
                 <div key={itemIndex} className="w-full">
-                  <div className="relative group min-h-[100px] bg-gray-100 flex items-center justify-center">
+                  <div className="relative group w-full">
                     {renderMedia(item, `Detail ${rowIndex}-${itemIndex}`, "w-full h-auto", "lazy")}
                   </div>
                 </div>
