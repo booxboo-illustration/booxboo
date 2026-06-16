@@ -221,6 +221,7 @@ const projects = [
     title: "Seoul  Illustration Fair v.19",
     description: "2025 서울일러스트페어 v.19 참가 / BOOTH DESIGN, GOODS, EXHIBITION GRAPHICS.",
     image: "/project-11.jpg",
+    detailImage: "/project-11-gallery-1.jpg",
     gallery: [
       "/project-11-gallery-1.jpg",
       "/project-11-gallery-2.jpg",
