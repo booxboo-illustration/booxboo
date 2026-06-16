@@ -673,19 +673,19 @@ const Home = React.memo(({ isScrolled, getProjectImage }: any) => {
           viewport={{ once: true }}
           className="space-y-4 md:space-y-6"
         >
-          <p className="text-[17px] sm:text-2xl md:text-[32px] font-normal leading-tight md:leading-[1.2] tracking-[-0.02em]">
+          <p className="text-[19px] sm:text-2xl md:text-[32px] font-normal leading-[1.25] md:leading-[1.2] tracking-[-0.02em]">
             <span className="font-semibold">BOOxBOO</span> is a line illustrator
           </p>
-          <p className="text-[17px] sm:text-2xl md:text-[32px] font-normal leading-tight md:leading-[1.2] tracking-[-0.02em]">
+          <p className="text-[19px] sm:text-2xl md:text-[32px] font-normal leading-[1.25] md:leading-[1.2] tracking-[-0.02em]">
             capturing small moments of everyday life.
           </p>
-          <p className="text-[17px] sm:text-2xl md:text-[32px] font-normal leading-tight md:leading-[1.2] tracking-[-0.02em]">
+          <p className="text-[19px] sm:text-2xl md:text-[32px] font-normal leading-[1.25] md:leading-[1.2] tracking-[-0.02em]">
             Guided by rhythm and harmony, we express the vibrant
           </p>
-          <p className="text-[17px] sm:text-2xl md:text-[32px] font-normal leading-tight md:leading-[1.2] tracking-[-0.02em]">
+          <p className="text-[19px] sm:text-2xl md:text-[32px] font-normal leading-[1.25] md:leading-[1.2] tracking-[-0.02em]">
             energy within the ordinary. Through these small moments,
           </p>
-          <p className="text-[17px] sm:text-2xl md:text-[32px] font-normal leading-tight md:leading-[1.2] tracking-[-0.02em]">
+          <p className="text-[19px] sm:text-2xl md:text-[32px] font-normal leading-[1.25] md:leading-[1.2] tracking-[-0.02em]">
             we share warmth and a gentle sense of positivity.
           </p>
         </motion.div>
