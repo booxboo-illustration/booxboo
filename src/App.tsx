@@ -395,7 +395,7 @@ const HeroCarousel = React.memo(({ projects, getProjectImage }: { projects: any[
   }, [featuredProjects.length]);
 
   return (
-    <section className="relative h-[1200px] md:h-screen w-full overflow-hidden bg-neutral-950">
+    <section className="relative h-[600px] md:h-screen w-full overflow-hidden bg-neutral-950">
       <AnimatePresence initial={false}>
         <motion.div
           key={currentIndex}
