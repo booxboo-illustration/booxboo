@@ -228,6 +228,7 @@ const projects = [
       "/project-11-gallery-4.jpg",
     ],
     size: "small",
+    aboutEn: "BOOxBOO participated in Seoul Illustration Fair v.19, presenting a collection of illustrations and goods inspired by everyday moments that bring good vibes.\n\nFrom booth design and product displays to printed goods, every element was designed to create a playful and welcoming experience where people could pause, explore, and connect through illustration.",
   },
   {
     id: 12,
