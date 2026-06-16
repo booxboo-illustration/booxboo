@@ -218,7 +218,7 @@ const projects = [
   },
   {
     id: 11,
-    title: "THE SEOUL ILLUSTRATION FAIR V.19",
+    title: "Seoul  Illustration Fair v.19",
     description: "2025 서울일러스트페어 v.19 참가 / BOOTH DESIGN, GOODS, EXHIBITION GRAPHICS.",
     image: "/project-11.jpg",
     gallery: [
