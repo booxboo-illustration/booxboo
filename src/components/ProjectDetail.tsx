@@ -421,7 +421,7 @@ const ProjectDetail = React.memo(({ projects, getProjectImage }: ProjectDetailPr
 
       <main className="flex-grow pb-32">
         {/* Header Section (White) */}
-        <section className="bg-white pt-32 md:pt-64 pb-5 md:pb-32 px-6 md:px-20 max-w-[1600px] mx-auto flex flex-col items-center justify-center text-center">
+        <section className="bg-white pt-32 md:pt-64 pb-2 md:pb-32 px-6 md:px-20 max-w-[1600px] mx-auto flex flex-col items-center justify-center text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -460,7 +460,7 @@ const ProjectDetail = React.memo(({ projects, getProjectImage }: ProjectDetailPr
       </section>
 
       {/* Content Section (Light) */}
-      <section className="py-16 md:py-32 px-6 md:px-20 max-w-[1600px] mx-auto">
+      <section className="py-10 md:py-32 px-6 md:px-20 max-w-[1600px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20">
           {/* Left Column */}
           <div className="lg:col-span-12 xl:col-span-5 space-y-12 md:space-y-40 font-sans hidden md:block">
