@@ -525,13 +525,13 @@ const ProjectCard = React.memo(({ project, idx, getProjectImage }: any) => (
           decoding="async"
         />
       </div>
-      <div className="space-y-1 md:space-y-2">
+      <div className="space-y-0.5 md:space-y-1">
         {!project.hideTitleOnGrid && (
           <h3 className="text-[18px] md:text-[20px] font-semibold tracking-tight flex items-center gap-2 text-white">
             {project.title}
           </h3>
         )}
-        <p className="text-[16px] md:text-[18px] text-neutral-500 font-semibold">
+        <p className="text-[14px] md:text-[16px] text-neutral-500 font-semibold leading-tight">
           {project.description.split('/')[0].trim()}
         </p>
       </div>
