@@ -223,7 +223,6 @@ const projects = [
     image: "/project-11.jpg",
     detailImage: "/project-11-gallery-1.jpg",
     gallery: [
-      "/project-11-gallery-1.jpg",
       "/project-11-gallery-2.jpg",
       "/project-11-gallery-3.jpg",
       "/project-11-gallery-4.jpg",
