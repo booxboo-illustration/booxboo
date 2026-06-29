@@ -237,11 +237,11 @@ const ProjectDetail = React.memo(({ projects, getProjectImage }: ProjectDetailPr
           isPairStart = current && current.toLowerCase().includes('gallery-2');
           isPairEnd = next && next.toLowerCase().includes('gallery-3');
         } else {
-          // Default pairing for other projects (excluding Project 6)
-          isPairStart = project.id !== 6 && current && (
+          // Default pairing for other projects (excluding Project 6 and Project 11)
+          isPairStart = project.id !== 6 && project.id !== 11 && current && (
             current.toLowerCase().includes('gallery-6')
           );
-          isPairEnd = project.id !== 6 && next && (
+          isPairEnd = project.id !== 6 && project.id !== 11 && next && (
             next.toLowerCase().includes('gallery-7')
           );
         }
