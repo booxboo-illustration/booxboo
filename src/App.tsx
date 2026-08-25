@@ -113,7 +113,7 @@ const projects = [
     description: "관중들 / Personal Work",
     image: "/project-5.jpg",
     gallery: [
-      
+      "/project-5-gallery-1.jpg",
     ],
     size: "small",
     year: "2025",
