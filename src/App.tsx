@@ -324,6 +324,23 @@ const projects = [
     aboutEn: "I drew people having a relaxed conversation for the cover of The Philosophy of Our Youngest Days, a philosophy book designed to be approachable and easy to read.",
     aboutKo: "편안하게 대화를 나누는 사람들의 모습을 담아, 가볍게 읽을 수 있는 철학책 '가장 젊은 날의 철학'의 북커버를 그렸습니다.",
   },
+  {
+    id: 17,
+    title: "Stoic at Work",
+    description: "북커버 일러스트레이션 / Book Cover Illustration",
+    image: "/project-17.jpg",
+    detailImage: "/project-17.jpg",
+    gallery: [
+      "/project-17-gallery-1.jpg",
+      "/project-17-gallery-2.jpg",
+    ],
+    size: "small",
+    year: "2026",
+    client: "FRONT PAGE",
+    projectType: "BOOK COVER ILLUSTRATION",
+    aboutEn: "I created the book cover for Stoic at Work, a book that draws on classical Stoic philosophy to explore attitudes toward work and life today.",
+    aboutKo: "고전 스토아 철학에서 오늘의 일과 삶에 필요한 태도를 배우는 '일하는 사람을 위한 철학'의 북커버를 그렸습니다.",
+  },
 ];
 
 function AppContent() {
