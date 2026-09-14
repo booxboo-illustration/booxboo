@@ -308,6 +308,22 @@ const projects = [
     aboutEn: "This work captures the small and cheerful daily lives of 'plant parents' who are silently greeted by their green companions. It aims to share the minor joys and healing found in nurturing your own small garden through a light and lighthearted perspective.",
     aboutKo: "말없이 나를 반겨주는 '식집사'들의 소소하고 유쾌한 일상을 담았습니다. 나만의 작은 정원을 가꾸며 느끼는 소소한 재미와 힐링을 가볍고 경쾌한 시선으로 나누고자 담아냈습니다.",
   },
+  {
+    id: 16,
+    title: "Philosophy of the Youngest Days",
+    description: "북커버 일러스트레이션 / Book Cover Illustration",
+    image: "/project-16.jpg",
+    detailImage: "/project-16.jpg",
+    gallery: [
+      "/project-16-gallery-1.jpg",
+    ],
+    size: "small",
+    year: "2025",
+    client: "BOOKSTONE",
+    projectType: "BOOK COVER ILLUSTRATION",
+    aboutEn: "I drew people having a relaxed conversation for the cover of The Philosophy of Our Youngest Days, a philosophy book designed to be approachable and easy to read.",
+    aboutKo: "편안하게 대화를 나누는 사람들의 모습을 담아, 가볍게 읽을 수 있는 철학책 '가장 젊은 날의 철학'의 북커버를 그렸습니다.",
+  },
 ];
 
 function AppContent() {
