@@ -329,9 +329,8 @@ const projects = [
     title: "Jo Tae-jung English Series",
     description: "북커버 일러스트레이션 / Book Cover Illustration",
     image: "/project-17.jpg",
-    detailImage: "/project-17.jpg",
+    detailImage: "/project-17-gallery-1.jpg",
     gallery: [
-      "/project-17-gallery-1.jpg",
       "/project-17-gallery-2.jpg",
       "/project-17-gallery-3.jpg",
       "/project-17-gallery-4.jpg",
