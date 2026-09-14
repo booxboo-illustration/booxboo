@@ -110,7 +110,7 @@ const projects = [
   {
     id: 5,
     title: "Game Spectators",
-    description: "관중들 / Personal Work",
+    description: "개인작업 / Personal Work",
     image: "/project-5.jpg",
     gallery: [
       "/project-5-gallery-1.jpg",
@@ -240,7 +240,7 @@ const projects = [
   {
     id: 12,
     title: "Beyond the Stars",
-    description: "우주를 사랑하는 아이의 시선으로 담은 꿈 / Personal Work",
+    description: "개인작업 / Personal Work",
     image: "/project-12.jpg",
     gallery: [
       "/project-12-gallery-1.jpg",  
@@ -257,7 +257,7 @@ const projects = [
   {
     id: 13,
     title: "Running Crew",
-    description: "러닝 크루 / Personal Work",
+    description: "개인작업 / Personal Work",
     image: "/project-13.jpg",
     gallery: [
       "/project-13-gallery-1.mp4",
@@ -296,7 +296,7 @@ const projects = [
   {
     id: 15,
     title: "Green Companions",
-    description: "식물과 함께하는 삶의 조각들 / Living with Green Friends",
+    description: "개인작업 / Living with Green Friends",
     image: "/project-15.jpg",
     gallery: [
       "/project-15-gallery-1.jpg",
@@ -565,7 +565,7 @@ const ProjectCard = React.memo(({ project, idx, getProjectImage }: any) => (
             {project.title}
           </h3>
         )}
-        <p className="text-[14px] md:text-[16px] text-neutral-500 font-semibold leading-tight">
+        <p className="text-[13px] md:text-[14px] text-neutral-500 font-semibold leading-tight">
           {project.description.split('/')[0].trim()}
         </p>
       </div>
