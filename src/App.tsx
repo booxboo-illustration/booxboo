@@ -70,7 +70,7 @@ const projects = [
   {
     id: 3,
     title: "High School Music Book",
-    description: "고등학교 음악 교과서 / Editorial Illustration & Cover Design",
+    description: "북커버 일러스트레이션 / Editorial Illustration & Cover Design",
     image: "/project-3.jpg",
     detailImage: "/project-3-gallery-1.jpg",
     gallery: [
@@ -203,7 +203,7 @@ const projects = [
   {
     id: 10,
     title: "Travel Guidebook Illustration",
-    description: "경남 여행 가이드북 표지 일러스트레이션 / Editorial Illustration & Cover Design",
+    description: "북커버 일러스트레이션 / Editorial Illustration & Cover Design",
     image: "/project-10.jpg",
     detailImage: "/project-10-gallery-1.jpg",
     gallery: [
