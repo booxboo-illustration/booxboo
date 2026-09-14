@@ -8,6 +8,7 @@ interface Project {
   id: number;
   title: string;
   description: string;
+  thumbnailDescription?: string;
   image: string;
   detailImage?: string;
   gallery?: string[];
@@ -606,7 +607,7 @@ const ProjectDetail = React.memo(({ projects, getProjectImage }: ProjectDetailPr
                     <div className="space-y-1 md:space-y-2">
                       <h3 className="text-[18px] md:text-[20px] font-semibold tracking-tight text-black">{p.title}</h3>
                       <p className="text-[16px] md:text-[18px] text-neutral-500 font-semibold leading-tight">
-                        {p.description.split('/')[0].trim()}
+                        {(p.thumbnailDescription || p.description).split('/')[0].trim()}
                       </p>
                     </div>
                   </motion.div>

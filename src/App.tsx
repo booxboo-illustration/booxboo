@@ -258,6 +258,7 @@ const projects = [
     id: 13,
     title: "Running Crew",
     description: "아침나라 고등학교 영어 교과서 북커버 일러스트레이션 / Book Cover Illustration",
+    thumbnailDescription: "개인작업 / Personal Work",
     image: "/project-13.jpg",
     gallery: [
       "/project-13-gallery-1.mp4",
@@ -519,7 +520,7 @@ const HeroCarousel = React.memo(({ projects, getProjectImage }: { projects: any[
                   )}
                 </Link>
                 <p className="text-white/90 text-lg md:text-2xl font-bold tracking-normal max-w-2xl translate-x-[2px] md:translate-x-[6px]">
-                  {featuredProjects[currentIndex].description.split('/')[0].trim()}
+                  {(featuredProjects[currentIndex].thumbnailDescription || featuredProjects[currentIndex].description).split('/')[0].trim()}
                 </p>
               </div>
               
@@ -586,7 +587,7 @@ const ProjectCard = React.memo(({ project, idx, getProjectImage }: any) => (
           </h3>
         )}
         <p className="text-[13px] md:text-[14px] text-neutral-500 font-semibold leading-tight">
-          {project.description.split('/')[0].trim()}
+          {(project.thumbnailDescription || project.description).split('/')[0].trim()}
         </p>
       </div>
     </motion.div>
