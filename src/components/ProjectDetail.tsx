@@ -8,7 +8,6 @@ interface Project {
   id: number;
   title: string;
   description: string;
-  focusDescription?: string;
   image: string;
   detailImage?: string;
   gallery?: string[];
@@ -435,7 +434,7 @@ const ProjectDetail = React.memo(({ projects, getProjectImage }: ProjectDetailPr
           <div className="space-y-2 hidden md:block">
             <p className="text-black/60 text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase">Project Focus</p>
             <p className="text-black text-xs md:text-sm font-bold tracking-widest uppercase">
-              {project.focusDescription || project.description}
+              {project.description}
             </p>
           </div>
         </motion.div>
