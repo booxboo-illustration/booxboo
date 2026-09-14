@@ -204,6 +204,7 @@ const projects = [
     id: 10,
     title: "Travel Guidebook Illustration",
     description: "북커버 일러스트레이션 / Editorial Illustration & Cover Design",
+    focusDescription: "부산,경남,울산 홍보 북커버 일러스트레이션 / Book Cover Illustration",
     image: "/project-10.jpg",
     detailImage: "/project-10-gallery-1.jpg",
     gallery: [
@@ -258,6 +259,7 @@ const projects = [
     id: 13,
     title: "Running Crew",
     description: "개인작업 / Personal Work",
+    focusDescription: "아침나라 고등학교 영어 교과서 북커버 일러스트레이션 / Book Cover Illustration",
     image: "/project-13.jpg",
     gallery: [
       "/project-13-gallery-1.mp4",
@@ -312,6 +314,7 @@ const projects = [
     id: 16,
     title: "Philosophy of the Youngest Days",
     description: "북커버 일러스트레이션 / Book Cover Illustration",
+    focusDescription: "가장 젊은날의 철학 북커버 일러스트레이션 / Book Cover Illustration",
     image: "/project-16.jpg",
     detailImage: "/project-16.jpg",
     gallery: [
@@ -328,6 +331,7 @@ const projects = [
     id: 17,
     title: "Jo Tae-jung English Series",
     description: "북커버 일러스트레이션 / Book Cover Illustration",
+    focusDescription: "메가공무원 1타강사 조태정 영어 북커버 일러스트레이션 / Book Cover Illustration",
     image: "/project-17.jpg",
     detailImage: "/project-17-gallery-1.jpg",
     gallery: [
@@ -348,6 +352,7 @@ const projects = [
     id: 18,
     title: "Stoic at Work",
     description: "북커버 일러스트레이션 / Book Cover Illustration",
+    focusDescription: "일하는 사람을 위한 철학 북커버 일러스트레이션 / Book Cover Illustration",
     image: "/project-18.jpg",
     detailImage: "/project-18.jpg",
     gallery: [
