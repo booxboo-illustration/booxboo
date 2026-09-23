@@ -68,6 +68,23 @@ const projects = [
     aboutKo: "2025년 부산진구청에서 진행한 청년친화도시 트라이얼스토어 [시도시] 프로젝트의 키 비주얼 작업을 했습니다. 각자의 자리에서 도전하며 한 걸음씩 앞으로 나아가는 청년 기업가들의 여정을, 다채로운 컬러가 어우러진 열정적인 장면으로 담아보았습니다. 이 그림이 또 하나의 작은 영감과 응원이 되기를 바랍니다.",
   },
   {
+    id: 19,
+    title: "Us in One Subway Car",
+    description: "개인작업 / Personal Work",
+    image: "/project-19.jpg",
+    detailImage: "/project-19-gallery-1.jpg",
+    gallery: [
+      "/project-19-gallery-2.png",
+    ],
+    size: "small",
+    year: "2026",
+    client: "Personal Project",
+    projectType: "Personal Illustration",
+    tagline: "한칸의 우리",
+    aboutEn: "Even in the same subway car, we are each living a different day. Listening to music or looking at a screen, we remain immersed in our own thoughts. Through varied colors and soft lines, I captured people briefly swaying together in the same direction.",
+    aboutKo: "같은 지하철 한 칸에 있어도 우리는 저마다 다른 하루를 보내고 있습니다. 음악을 듣거나 화면을 들여다보며, 각자의 생각 속에 머무르죠. 잠시 같은 방향으로 흔들리는 사람들의 모습을 다채로운 색과 포근한 선으로 담았습니다.",
+  },
+  {
     id: 3,
     title: "High School Music Book",
     description: "북커버 일러스트레이션 / Editorial Illustration & Cover Design",
@@ -637,7 +654,7 @@ const Home = React.memo(({ isScrolled, getProjectImage }: any) => {
   };
 
   const homeProjects = React.useMemo(() => {
-    return [...projects].sort((a, b) => a.id - b.id);
+    return projects;
   }, []);
 
   useEffect(() => {
