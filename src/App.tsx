@@ -257,7 +257,7 @@ const projects = [
   {
     id: 13,
     title: "Running Crew",
-    description: "아침나라 고등학교 영어 교과서 북커버 일러스트레이션 / Book Cover Illustration",
+    description: "개인작업 / Personal Work",
     thumbnailDescription: "개인작업 / Personal Work",
     image: "/project-13.jpg",
     gallery: [
