@@ -93,6 +93,7 @@ const projects = [
     gallery: [
       "/project-20-gallery-2.png",
       "/project-20-gallery-3.png",
+      "/project-20-gallery-4.png",
     ],
     size: "small",
     year: "2026",
