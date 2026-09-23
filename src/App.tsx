@@ -89,7 +89,7 @@ const projects = [
     title: "EBS Parents’ Day ID",
     description: "EBS 어버이날 ID 영상 일러스트레이션 / Illustration for EBS Parents’ Day ID",
     image: "/project-20.png",
-    detailImage: "/project-20-gallery-1.png",
+    detailImage: "https://www.youtube.com/watch?v=tVJMb_TYwmo",
     gallery: [
       "/project-20-gallery-2.png",
       "/project-20-gallery-3.png",

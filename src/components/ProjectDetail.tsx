@@ -279,7 +279,7 @@ const ProjectDetail = React.memo(({ projects, getProjectImage }: ProjectDetailPr
     } else if (url.includes('embed/')) {
       videoId = url.split('embed/')[1].split('?')[0];
     }
-    return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}`;
+    return `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&playsinline=1&loop=1&playlist=${videoId}`;
   };
 
   const renderMedia = (url: string, alt: string, className: string, loading: "lazy" | "eager" = "lazy") => {
