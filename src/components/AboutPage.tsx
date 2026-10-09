@@ -66,7 +66,7 @@ const AboutPage: React.FC = () => {
               <div className="space-y-4">
                 <h2 className="text-neutral-500 uppercase tracking-widest text-xs md:text-sm font-bold">Contact</h2>
                 <div className="text-[17px] md:text-[20px] font-semibold leading-relaxed text-neutral-300">
-                  <p>boox2boox2boo@gmail.com</p>
+                  <p><a href="mailto:boox2boox2boo@gmail.com" className="hover:text-white transition-colors">boox2boox2boo@gmail.com</a></p>
                   <p className="mt-2">
                     <a 
                       href="https://www.instagram.com/booxboo.illustration" 
