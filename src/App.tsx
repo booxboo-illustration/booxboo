@@ -5,7 +5,6 @@ import { BrowserRouter as Router, Routes, Route, Link, useParams, useLocation } 
 import ProjectDetail from "./components/ProjectDetail";
 import ProjectsPage from "./components/ProjectsPage";
 import AboutPage from "./components/AboutPage";
-import InquiryForm from "./components/InquiryForm";
 import { getOptimizedImageUrl, getResponsiveImageAttrs } from "./imageUtils";
 
 const projects = [
@@ -676,7 +675,6 @@ const Home = React.memo(({ isScrolled, getProjectImage }: any) => {
             <Link to="/about" className="hover:opacity-50 transition-opacity">
               About
             </Link>
-            <Link to="/#inquiry" className="hover:opacity-50 transition-opacity">Contact</Link>
           </div>
           
           <button 
@@ -711,7 +709,6 @@ const Home = React.memo(({ isScrolled, getProjectImage }: any) => {
             >
               About
             </Link>
-            <Link to="/#inquiry" onClick={() => setIsMenuOpen(false)}>Contact</Link>
           </motion.div>
         )}
       </AnimatePresence>
@@ -772,7 +769,6 @@ const Home = React.memo(({ isScrolled, getProjectImage }: any) => {
           </div>
         </div>
       </section>
-      <InquiryForm />
       </main>
 
       {/* Footer */}

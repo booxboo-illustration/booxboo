@@ -27,9 +27,14 @@ export default function InquiryForm() {
     body.forEach(value => { size += value instanceof File ? value.size : new TextEncoder().encode(value).length; });
     if (size > 7 * 1024 * 1024) { fail('첨부 파일 합계는 7MB 이하로 올려주세요. 큰 자료는 공유 링크로 남겨주세요.'); return; }
     body.forEach((value, key) => { if (value instanceof File && !value.size) body.delete(key); });
+    const localizedBody = new FormData();
+    const labels = new Map<string, string>(sections.flatMap(([, fields]) => fields.map(field => [field.name, field.label] as [string, string])));
+    body.forEach((value, key) => localizedBody.append(labels.get(key) || key, value));
+    localizedBody.set('email', String(body.get('email') || ''));
+    localizedBody.set('subject', 'BOOxBOO 새 프로젝트 작업 의뢰');
     setError(''); setStatus('sending');
     try {
-      const response = await fetch('/', { method: 'POST', body });
+      const response = await fetch('/', { method: 'POST', body: localizedBody });
       if (!response.ok) throw new Error('Submission failed');
       form.reset(); setStatus('success');
       requestAnimationFrame(() => result.current?.focus());
