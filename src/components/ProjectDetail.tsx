@@ -447,7 +447,7 @@ const ProjectDetail = React.memo(({ projects, getProjectImage }: ProjectDetailPr
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4, duration: 1 }}
-          className="overflow-hidden"
+          className={project.id === 20 ? "overflow-hidden w-full md:w-[85%] mx-auto" : "overflow-hidden"}
         >
           {renderMedia(
             imageUrl, 

@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route, Link, useParams, useLocation } 
 import ProjectDetail from "./components/ProjectDetail";
 import ProjectsPage from "./components/ProjectsPage";
 import AboutPage from "./components/AboutPage";
+import InquiryForm from "./components/InquiryForm";
 import { getOptimizedImageUrl, getResponsiveImageAttrs } from "./imageUtils";
 
 const projects = [
@@ -631,45 +632,8 @@ const ProjectCard = React.memo(({ project, idx, getProjectImage }: any) => (
 
 const Home = React.memo(({ isScrolled, getProjectImage }: any) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const location = useLocation();
   const { hash } = location;
-
-  const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleFormSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        setIsSubmitted(true);
-        setFormData({ name: "", email: "", message: "" });
-        setTimeout(() => setIsSubmitted(false), 5000);
-      } else {
-        const data = await response.json();
-        alert(data.error || "Failed to send message.");
-      }
-    } catch (error) {
-      console.error("Error sending message:", error);
-      alert("An error occurred. Please try again later.");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
 
   const homeProjects = React.useMemo(() => {
     return projects;
@@ -712,6 +676,7 @@ const Home = React.memo(({ isScrolled, getProjectImage }: any) => {
             <Link to="/about" className="hover:opacity-50 transition-opacity">
               About
             </Link>
+            <Link to="/#inquiry" className="hover:opacity-50 transition-opacity">Contact</Link>
           </div>
           
           <button 
@@ -746,6 +711,7 @@ const Home = React.memo(({ isScrolled, getProjectImage }: any) => {
             >
               About
             </Link>
+            <Link to="/#inquiry" onClick={() => setIsMenuOpen(false)}>Contact</Link>
           </motion.div>
         )}
       </AnimatePresence>
@@ -806,6 +772,7 @@ const Home = React.memo(({ isScrolled, getProjectImage }: any) => {
           </div>
         </div>
       </section>
+      <InquiryForm />
       </main>
 
       {/* Footer */}
