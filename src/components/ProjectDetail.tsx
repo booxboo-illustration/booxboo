@@ -184,7 +184,7 @@ const ProjectDetail = React.memo(({ projects, getProjectImage }: ProjectDetailPr
         // Check for 1/3 layout (3 items) for Project 1, Project 6, and Project 8
         const isTripleStart = (project.id === 1 && current && current.toLowerCase().includes('gallery-13')) ||
                               (project.id === 21 && current && current.toLowerCase().includes('gallery-3')) ||
-                              (project.id === 6 && current && current.toLowerCase().includes('gallery-2')) ||
+                              ([6, 22].includes(project.id) && current && current.toLowerCase().includes('gallery-2')) ||
                               (project.id === 8 && current && current.toLowerCase().includes('gallery-2'));
         if (isTripleStart && i + 2 < gallery.length) {
           galleryRows.push([gallery[i], gallery[i+1], gallery[i+2]]);
@@ -240,10 +240,10 @@ const ProjectDetail = React.memo(({ projects, getProjectImage }: ProjectDetailPr
           isPairEnd = next && next.toLowerCase().includes('gallery-3');
         } else {
           // Default pairing for other projects (excluding Project 6 and Project 11)
-          isPairStart = project.id !== 6 && project.id !== 21 && project.id !== 11 && current && (
+          isPairStart = ![6, 22].includes(project.id) && project.id !== 21 && project.id !== 11 && current && (
             current.toLowerCase().includes('gallery-6')
           );
-          isPairEnd = project.id !== 6 && project.id !== 21 && project.id !== 11 && next && (
+          isPairEnd = ![6, 22].includes(project.id) && project.id !== 21 && project.id !== 11 && next && (
             next.toLowerCase().includes('gallery-7')
           );
         }
