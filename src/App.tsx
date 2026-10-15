@@ -85,8 +85,8 @@ const projects = [
     year: "2026",
     client: "GQ MAGAZINE",
     projectType: "EDITORIAL ILLUSTRATION",
-    aboutEn: "I created the grooming illustrations for the October 2026 issue of GQ Magazine. With World Sight Day coming up tomorrow, October 8, the feature explores eye health essentials, from massages for tired eyes to everyday items, habits, and self-checks.",
-    aboutKo: "2026년 GQ 매거진 10월호 그루밍 콘텐츠 일러스트를 작업했습니다. 10월 8일, 내일은 '세계 눈의 날(World Sight Day)': 피로한 눈을 위한 마사지부터 일상의 아이템과 습관, 그리고 자가진단까지, 알아두면 좋은 눈 건강에 관한 이야기를 담았습니다.",
+    aboutEn: "I created the grooming illustrations for the October 2026 issue of GQ Magazine. Marking World Sight Day on October 8, the feature explores useful insights into eye health, from massages for tired eyes to everyday items and habits, as well as self-checks.",
+    aboutKo: "2026년 GQ 매거진 10월호 그루밍 콘텐츠 일러스트를 작업했습니다. 10월 8일은 '세계 눈의 날(World Sight Day)', 피로한 눈을 위한 마사지부터 일상의 아이템과 습관, 그리고 자가진단까지, 알아두면 좋은 눈 건강에 관한 이야기를 담았습니다.",
   },
   {
     id: 19,
