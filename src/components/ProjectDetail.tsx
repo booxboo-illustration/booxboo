@@ -492,12 +492,12 @@ const ProjectDetail = React.memo(({ projects, getProjectImage }: ProjectDetailPr
             <div className="md:pr-[10px]">
               <div className="space-y-6 md:space-y-8">
                 <div className="space-y-4 md:space-y-6 text-base md:text-[18px] text-neutral-700 leading-relaxed font-semibold">
-                  <p>
+                  <p className="whitespace-pre-line">
                     {project.aboutEn || "Project description coming soon."}
                   </p>
                 </div>
                 <div className="space-y-4 md:space-y-6 text-sm md:text-[16px] text-neutral-500 leading-relaxed font-semibold border-t border-neutral-200 pt-6 md:pt-8 font-apple">
-                  <p>
+                  <p className="whitespace-pre-line">
                     {project.aboutKo || "프로젝트 설명이 곧 업데이트될 예정입니다."}
                   </p>
                 </div>

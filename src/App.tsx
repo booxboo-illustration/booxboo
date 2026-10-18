@@ -89,6 +89,23 @@ const projects = [
     aboutKo: "2026년 GQ 매거진 10월호 그루밍 콘텐츠 일러스트를 작업했습니다. 10월 8일은 '세계 눈의 날(World Sight Day)', 피로한 눈을 위한 마사지부터 일상의 아이템과 습관, 그리고 자가진단까지, 알아두면 좋은 눈 건강에 관한 이야기를 담았습니다.",
   },
   {
+    "id": 23,
+    "title": "BOO!",
+    "description": "개인작업 / Personal Work",
+    "image": "/project-23.jpg",
+    "detailImage": "/project-23-gallery-1.jpg",
+    "gallery": [
+      "/project-23-gallery-2.jpg"
+    ],
+    "size": "small",
+    "year": "2026",
+    "client": "PERSONAL PROJECT",
+    "projectType": "PERSONAL ILLUSTRATION",
+    "tagline": "놀람 끝에 웃음",
+    "aboutEn": "My son surprises me every day with a cheerful “BOO!” I found his little prank so endearing that I named myself BOOxBOO. Ever since, Halloween has felt a little more personal.\n\nFor this project, I brought his playful surprise to a Halloween gathering. A ghost pops up in the middle of a toast. Hats fly, sweets scatter, and everyone jumps. Perhaps this is what I look like when my son catches me off guard.\n\nWith rough brushwork and simple lines, I captured that brief moment between surprise and laughter. I hope it brings a little smile to anyone who sees it.\n\nBOO! 👻",
+    "aboutKo": "아들은 매일 “BOO!”를 외치며 저를 놀래킵니다. 그 모습이 귀여워 작가명도 BOOxBOO라고 지었습니다. 덕분에 10월의 할로윈은 제게 조금 더 특별하게 다가옵니다.\n\n이번 그림은 그 장난을 할로윈 테이블로 옮겨본 작업입니다. 함께 잔을 들던 사람들 사이로 유령이 불쑥 나타납니다. 모자가 날아가고 사탕이 튀고, 놀란 사람들의 팔다리가 들썩입니다. 아들에게 놀랐을 때의 제 모습도 아마 이렇지 않을까요.\n\n거친 붓결과 단순한 선으로 놀람이 웃음으로 바뀌는 짧은 순간을 그렸습니다. 그림을 보시는 분도 피식 웃으셨으면 좋겠습니다.\n\nBOO! 👻"
+  },
+  {
     id: 19,
     title: "Us in One Subway Car",
     description: "개인작업 / Personal Work",
