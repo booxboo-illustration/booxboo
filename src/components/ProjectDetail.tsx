@@ -7,6 +7,7 @@ import { getOptimizedImageUrl, getResponsiveImageAttrs } from "../imageUtils";
 interface Project {
   id: number;
   title: string;
+  contentTitle?: string;
   description: string;
   thumbnailDescription?: string;
   image: string;
@@ -470,7 +471,7 @@ const ProjectDetail = React.memo(({ projects, getProjectImage }: ProjectDetailPr
           <div className="lg:col-span-12 xl:col-span-5 space-y-12 md:space-y-40 font-sans hidden md:block">
             <div className="space-y-6 md:space-y-8 md:pr-20">
               <h2 className="text-2xl md:text-4xl font-bold tracking-tight leading-[1.2] text-neutral-900 font-sans">
-                {project.title}{project.tagline ? ` ㅡ ${project.tagline}` : ""}
+                {project.contentTitle || project.title}{project.tagline ? ` ㅡ ${project.tagline}` : ""}
               </h2>
               <div className="space-y-1 text-[10px] md:text-xs font-bold tracking-widest uppercase text-neutral-400">
                 {project.year && <p>Year — {project.year}</p>}
