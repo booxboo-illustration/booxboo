@@ -89,21 +89,6 @@ const projects = [
     aboutKo: "2026년 GQ 매거진 10월호 그루밍 콘텐츠 일러스트를 작업했습니다. 10월 8일은 '세계 눈의 날(World Sight Day)', 피로한 눈을 위한 마사지부터 일상의 아이템과 습관, 그리고 자가진단까지, 알아두면 좋은 눈 건강에 관한 이야기를 담았습니다.",
   },
   {
-    "id": 24,
-    "title": "My Aunt Word Card",
-    "contentTitle": "My Aunt Word Card Illustrations",
-    "description": "마이앤트 낱말카드 일러스트레이션 / My Aunt Word Card Illustrations",
-    "image": "/project-24.png",
-    "detailImage": "/project-24-gallery-1.png",
-    "gallery": ["/project-24-gallery-2.png", "/project-24-gallery-3.png", "/project-24-gallery-4.png", "/project-24-gallery-5.png", "/project-24-gallery-6.png", "/project-24-gallery-7.png", "/project-24-gallery-8.png", "/project-24-gallery-9.png", "/project-24-gallery-11.png", "/project-24-gallery-12.png"],
-    "size": "small",
-    "year": "2026",
-    "client": "MY AUNT",
-    "projectType": "WORD CARD ILLUSTRATION",
-    "aboutEn": "Thinking back to the early years when my now-grown children were discovering the world, I created these word card illustrations for My Aunt. Each of the 35 actions is expressed through simple, clear features, helping children understand the meaning of each word and movement through the pictures alone. The People card set brings together a range of styles, from detailed drawings to illustrations and line art, tailored to each theme. Created with affection, these are cards I would love to share with babies just beginning to discover the world.",
-    "aboutKo": "어느새 훌쩍 자란 아이들이 세상을 하나씩 배워가던 어린 시절을 떠올리며, 마이앤트 낱말카드 일러스트를 작업했습니다. 아이들이 그림만 보고도 낱말과 동작의 뜻을 헷갈리지 않도록, 35가지 행동의 핵심 특징을 단순하고 명확하게 표현했습니다. ‘사람’ 카드 세트에는 주제에 따라 세밀화부터 일러스트, 라인 일러스트까지 다양한 표현이 담겨있습니다. 이제 세상에 빛을 보기 시작하는 아기들에게 소개하고 싶은, 애정을 담아 그린 낱말카드입니다."
-  },
-  {
     "id": 23,
     "title": "BOO!",
     "description": "개인작업 / Personal Work",
@@ -118,6 +103,21 @@ const projects = [
     "projectType": "PERSONAL ILLUSTRATION",
     "aboutEn": "My son surprises me every day with a cheerful “BOO!” I found his little prank so endearing that I named myself BOOxBOO. Ever since, Halloween has felt a little more personal.\n\nHats fly, sweets scatter, and everyone jumps. Perhaps this is what I look like when my son catches me off guard.\n\nWith rough brushwork and simple lines, I captured that brief moment between surprise and laughter. I hope it brings a little smile to anyone who sees it.\n\nBOO! 👻",
     "aboutKo": "아들은 매일 “BOO!”를 외치며 저를 놀래킵니다. 그 모습이 귀여워 작가명도 BOOxBOO라고 지었습니다. 덕분에 10월의 할로윈은 제게 조금 더 특별하게 다가옵니다.\n\n모자가 날아가고 사탕이 튀고, 놀란 사람들의 팔다리가 들썩입니다. 아들에게 놀랐을 때의 제 모습도 아마 이렇지 않을까요.\n\n거친 붓결과 단순한 선으로 놀람이 웃음으로 바뀌는 짧은 순간을 그렸습니다. 그림을 보시는 분도 피식 웃으셨으면 좋겠습니다.\n\nBOO! 👻"
+  },
+  {
+    "id": 24,
+    "title": "My Aunt Word Card",
+    "contentTitle": "My Aunt Word Card Illustrations",
+    "description": "마이앤트 낱말카드 일러스트레이션 / My Aunt Word Card Illustrations",
+    "image": "/project-24.png",
+    "detailImage": "/project-24-gallery-1.png",
+    "gallery": ["/project-24-gallery-2.png", "/project-24-gallery-3.png", "/project-24-gallery-4.png", "/project-24-gallery-5.png", "/project-24-gallery-6.png", "/project-24-gallery-7.png", "/project-24-gallery-8.png", "/project-24-gallery-9.png", "/project-24-gallery-11.png", "/project-24-gallery-12.png"],
+    "size": "small",
+    "year": "2026",
+    "client": "MY AUNT",
+    "projectType": "WORD CARD ILLUSTRATION",
+    "aboutEn": "Thinking back to the early years when my now-grown children were discovering the world, I created these word card illustrations for My Aunt. Each of the 35 actions is expressed through simple, clear features, helping children understand the meaning of each word and movement through the pictures alone. The People card set brings together a range of styles, from detailed drawings to illustrations and line art, tailored to each theme. Created with affection, these are cards I would love to share with babies just beginning to discover the world.",
+    "aboutKo": "어느새 훌쩍 자란 아이들이 세상을 하나씩 배워가던 어린 시절을 떠올리며, 마이앤트 낱말카드 일러스트를 작업했습니다. 아이들이 그림만 보고도 낱말과 동작의 뜻을 헷갈리지 않도록, 35가지 행동의 핵심 특징을 단순하고 명확하게 표현했습니다. ‘사람’ 카드 세트에는 주제에 따라 세밀화부터 일러스트, 라인 일러스트까지 다양한 표현이 담겨있습니다. 이제 세상에 빛을 보기 시작하는 아기들에게 소개하고 싶은, 애정을 담아 그린 낱말카드입니다."
   },
   {
     id: 19,
