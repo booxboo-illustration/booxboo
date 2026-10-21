@@ -41,31 +41,6 @@ const projects = [
     aboutKo: "2026년, 각자의 자리에서 목표를 향해 나아가는 사람들을 그렸습니다. 모두 속도도 방향도 다르지만, 각자의 이유로 오늘을 살아가고 있다는 생각이 들었습니다. 이 그림을 통해 올해를 시작하는 마음에 작은 희망과 자신감이 더해지기를 바랐습니다. 2026년에도 각자의 자리에서 반짝이는 순간들이 이어지기를 바랍니다. 행복이 자연스럽게 스며드는 한 해가 되기를.🍀",
   },
   {
-    "id": 24,
-    "title": "My Aunt Word Card Illustrations",
-    "description": "마이앤트 낱말카드 일러스트레이션 / My Aunt Word Card Illustrations",
-    "image": "/project-24.png",
-    "detailImage": "/project-24-gallery-1.png",
-    "gallery": [
-      "/project-24-gallery-2.png",
-      "/project-24-gallery-3.png",
-      "/project-24-gallery-4.png",
-      "/project-24-gallery-5.png",
-      "/project-24-gallery-6.png",
-      "/project-24-gallery-7.png",
-      "/project-24-gallery-8.png",
-      "/project-24-gallery-9.png",
-      "/project-24-gallery-10.png",
-      "/project-24-gallery-11.png"
-    ],
-    "size": "small",
-    "year": "2026",
-    "client": "MY AUNT",
-    "projectType": "WORD CARD ILLUSTRATION",
-    "aboutEn": "Thinking back to the early years when my now-grown children were discovering the world, I created these word card illustrations for My Aunt. Each of the 35 actions is expressed through simple, clear features, helping children understand the meaning of each word and movement through the pictures alone. The People card set brings together a range of styles, from detailed drawings to illustrations and line art, tailored to each theme. Created with affection, these are cards I would love to recommend to friends welcoming a new baby.",
-    "aboutKo": "어느새 훌쩍 자란 아이들이 세상을 하나씩 배워가던 어린 시절을 떠올리며, 마이앤트 낱말카드 일러스트를 작업했습니다. 아이들이 그림만 보고도 낱말과 동작의 뜻을 헷갈리지 않도록, 35가지 행동의 핵심 특징을 단순하고 명확하게 표현했습니다. ‘사람’ 카드 세트에는 주제에 따라 세밀화부터 일러스트, 라인 일러스트까지 다양한 표현을 담았습니다. 주변에 아기가 태어나면 소개하고 싶은, 애정을 담아 그린 낱말카드입니다."
-  },
-  {
     id: 2,
     title: "Busan Pop-up Store",
     description: "부산 전포동 팝업스토어 키비주얼 작업 / Poster & Window Illustration",
@@ -112,6 +87,20 @@ const projects = [
     projectType: "EDITORIAL ILLUSTRATION",
     aboutEn: "I created the grooming illustrations for the October 2026 issue of GQ Magazine. Marking World Sight Day on October 8, the feature explores useful insights into eye health, from massages for tired eyes to everyday items and habits, as well as self-checks.",
     aboutKo: "2026년 GQ 매거진 10월호 그루밍 콘텐츠 일러스트를 작업했습니다. 10월 8일은 '세계 눈의 날(World Sight Day)', 피로한 눈을 위한 마사지부터 일상의 아이템과 습관, 그리고 자가진단까지, 알아두면 좋은 눈 건강에 관한 이야기를 담았습니다.",
+  },
+  {
+    "id": 24,
+    "title": "My Aunt Word Card Illustrations",
+    "description": "마이앤트 낱말카드 일러스트레이션 / My Aunt Word Card Illustrations",
+    "image": "/project-24.png",
+    "detailImage": "/project-24-gallery-1.png",
+    "gallery": ["/project-24-gallery-2.png", "/project-24-gallery-3.png", "/project-24-gallery-4.png", "/project-24-gallery-5.png", "/project-24-gallery-6.png", "/project-24-gallery-7.png", "/project-24-gallery-8.png", "/project-24-gallery-9.png", "/project-24-gallery-11.png", "/project-24-gallery-12.png"],
+    "size": "small",
+    "year": "2026",
+    "client": "MY AUNT",
+    "projectType": "WORD CARD ILLUSTRATION",
+    "aboutEn": "Thinking back to the early years when my now-grown children were discovering the world, I created these word card illustrations for My Aunt. Each of the 35 actions is expressed through simple, clear features, helping children understand the meaning of each word and movement through the pictures alone. The People card set brings together a range of styles, from detailed drawings to illustrations and line art, tailored to each theme. Created with affection, these are cards I would love to recommend to friends welcoming a new baby.",
+    "aboutKo": "어느새 훌쩍 자란 아이들이 세상을 하나씩 배워가던 어린 시절을 떠올리며, 마이앤트 낱말카드 일러스트를 작업했습니다. 아이들이 그림만 보고도 낱말과 동작의 뜻을 헷갈리지 않도록, 35가지 행동의 핵심 특징을 단순하고 명확하게 표현했습니다. ‘사람’ 카드 세트에는 주제에 따라 세밀화부터 일러스트, 라인 일러스트까지 다양한 표현을 담았습니다. 주변에 아기가 태어나면 소개하고 싶은, 애정을 담아 그린 낱말카드입니다."
   },
   {
     "id": 23,

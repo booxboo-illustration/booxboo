@@ -143,7 +143,9 @@ const ProjectDetail = React.memo(({ projects, getProjectImage }: ProjectDetailPr
     const galleryRows: string[][] = [];
     console.log('Gallery Items:', gallery);
 
-    if (project.id === 14) {
+    if (project.id === 24) {
+      gallery.forEach((item) => galleryRows.push([item]));
+    } else if (project.id === 14) {
       // Custom gallery layout for Project 14:
       // - project-14-gallery-2, project-14-gallery-3, project-14-gallery-4 in a 3-column row
       // - Others in individual 1-column rows
