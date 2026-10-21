@@ -90,7 +90,7 @@ const projects = [
   },
   {
     "id": 24,
-    "title": "My Aunt Word Card Illustrations",
+    "title": "My Aunt Word Card",
     "description": "마이앤트 낱말카드 일러스트레이션 / My Aunt Word Card Illustrations",
     "image": "/project-24.png",
     "detailImage": "/project-24-gallery-1.png",
