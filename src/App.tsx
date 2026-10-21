@@ -191,6 +191,7 @@ const projects = [
       "/project-4-gallery-4.jpg",
       "/project-4-gallery-5.jpg",
       "/project-4-gallery-6.jpg",
+      "/project-4-gallery-7.jpg",
     ],
     size: "small",
     year: "2025",
