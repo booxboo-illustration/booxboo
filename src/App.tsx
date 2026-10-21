@@ -184,8 +184,8 @@ const projects = [
     title: "Meunder x BOOxBOO",
     description: "미언더 라이프스타일 일러스트 콜라보레이션 / Meunder Lifestyle Moment Illustration Collaboration",
     image: "/project-4.jpg",
+    detailImage: "/project-4-gallery-1.jpg",
     gallery: [
-      "/project-4-gallery-1.jpg",
       "/project-4-gallery-2.jpg",
       "/project-4-gallery-3.jpg",
       "/project-4-gallery-4.jpg",
