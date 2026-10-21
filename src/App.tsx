@@ -100,8 +100,8 @@ const projects = [
     "year": "2026",
     "client": "MY AUNT",
     "projectType": "WORD CARD ILLUSTRATION",
-    "aboutEn": "Thinking back to the early years when my now-grown children were discovering the world, I created these word card illustrations for My Aunt. Each of the 35 actions is expressed through simple, clear features, helping children understand the meaning of each word and movement through the pictures alone. The People card set brings together a range of styles, from detailed drawings to illustrations and line art, tailored to each theme. Created with affection, these are cards I would love to recommend to friends welcoming a new baby.",
-    "aboutKo": "어느새 훌쩍 자란 아이들이 세상을 하나씩 배워가던 어린 시절을 떠올리며, 마이앤트 낱말카드 일러스트를 작업했습니다. 아이들이 그림만 보고도 낱말과 동작의 뜻을 헷갈리지 않도록, 35가지 행동의 핵심 특징을 단순하고 명확하게 표현했습니다. ‘사람’ 카드 세트에는 주제에 따라 세밀화부터 일러스트, 라인 일러스트까지 다양한 표현을 담았습니다. 주변에 아기가 태어나면 소개하고 싶은, 애정을 담아 그린 낱말카드입니다."
+    "aboutEn": "Thinking back to the early years when my now-grown children were discovering the world, I created these word card illustrations for My Aunt. Each of the 35 actions is expressed through simple, clear features, helping children understand the meaning of each word and movement through the pictures alone. The People card set brings together a range of styles, from detailed drawings to illustrations and line art, tailored to each theme. Created with affection, these are cards I would love to share with babies just beginning to discover the world.",
+    "aboutKo": "어느새 훌쩍 자란 아이들이 세상을 하나씩 배워가던 어린 시절을 떠올리며, 마이앤트 낱말카드 일러스트를 작업했습니다. 아이들이 그림만 보고도 낱말과 동작의 뜻을 헷갈리지 않도록, 35가지 행동의 핵심 특징을 단순하고 명확하게 표현했습니다. ‘사람’ 카드 세트에는 주제에 따라 세밀화부터 일러스트, 라인 일러스트까지 다양한 표현이 담겨있습니다. 이제 세상에 빛을 보기 시작하는 아기들에게 소개하고 싶은, 애정을 담아 그린 낱말카드입니다."
   },
   {
     "id": 23,
