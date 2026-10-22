@@ -92,6 +92,7 @@ export function trackPage(path: string, title: string, project?: { id: number; t
 
 // Count actual foreground time, not time spent with the tab hidden or unfocused.
 export function watchProjectInterest(project: { id: number; title: string }) {
+  const requiredActiveSeconds = 5;
   let elapsed = 0;
   let lastTick = performance.now();
   let active = document.visibilityState === 'visible' && document.hasFocus();
@@ -101,9 +102,9 @@ export function watchProjectInterest(project: { id: number; title: string }) {
     if (active) elapsed += Math.min(now - lastTick, 2000);
     lastTick = now;
     active = document.visibilityState === 'visible' && document.hasFocus();
-    if (!sent && elapsed >= 30000) {
+    if (!sent && elapsed >= requiredActiveSeconds * 1000) {
       sent = true;
-      trackEvent('project_interest', { project_id: String(project.id), project_name: project.title, active_seconds: 30 });
+      trackEvent('project_interest', { project_id: String(project.id), project_name: project.title, active_seconds: requiredActiveSeconds });
     }
   }
   const timer = window.setInterval(tick, 1000);

@@ -82,17 +82,18 @@ test('opting out persists and immediately blocks subsequent events in this and o
   assert.equal(state.window['ga-disable-G-TEST123'], true);
 });
 
-test('project interest requires 30 foreground seconds and fires only once per page visit', () => {
+test('project interest requires 5 foreground seconds and fires only once per page visit', () => {
   const state = setup();
   const stop = state.api.watchProjectInterest({ id: 23, title: 'BOO!' });
-  state.advance(15);
+  state.advance(2);
   state.setFocused(false);
   state.advance(90);
   state.setFocused(true);
-  state.advance(14);
+  state.advance(2);
   assert.equal(state.events().length, 0);
   state.advance(1);
   assert.equal(state.events()[0][1], 'project_interest');
+  assert.equal(state.events()[0][2].active_seconds, 5);
   state.advance(60);
   assert.equal(state.events().length, 1);
   stop();
