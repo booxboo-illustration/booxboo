@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Routes, Route, Link, useParams, useLocation } 
 import ProjectDetail from "./components/ProjectDetail";
 import ProjectsPage from "./components/ProjectsPage";
 import AboutPage from "./components/AboutPage";
+import Analytics from "./components/Analytics";
+import AnalyticsSettings from "./components/AnalyticsSettings";
 import { getOptimizedImageUrl, getResponsiveImageAttrs } from "./imageUtils";
 
 const projects = [
@@ -506,7 +508,9 @@ function AppContent() {
 
   return (
     <>
+      <Analytics projects={projects} />
       <Routes location={location}>
+        <Route path="/analytics-settings" element={<AnalyticsSettings />} />
         <Route path="/" element={
           <Home 
             isScrolled={isScrolled} 
@@ -870,6 +874,7 @@ const Home = React.memo(({ isScrolled, getProjectImage }: any) => {
             </div>
           </div>
         </div>
+        <div className="max-w-[1600px] mx-auto mt-10"><Link to="/analytics-settings" className="text-xs text-neutral-500 underline underline-offset-4">방문 통계 안내</Link></div>
       </footer>
     </div>
   );

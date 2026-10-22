@@ -165,6 +165,7 @@ const ProjectsPage = React.memo(({ projects, getProjectImage }: ProjectsPageProp
             </div>
           </div>
         </div>
+        <div className="max-w-[1600px] mx-auto mt-10"><Link to="/analytics-settings" className="text-xs text-neutral-500 underline underline-offset-4">방문 통계 안내</Link></div>
       </footer>
     </div>
   );
