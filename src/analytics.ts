@@ -48,11 +48,19 @@ function initialize() {
   if (initialized) return true;
   window.dataLayer = window.dataLayer || [];
   window.gtag = function () { window.dataLayer!.push(arguments); };
+  let debugMode = false;
+  try {
+    if (new URLSearchParams(location.search).get('analytics_debug') === '1') {
+      sessionStorage.setItem('booxboo_analytics_debug', 'true');
+    }
+    debugMode = sessionStorage.getItem('booxboo_analytics_debug') === 'true';
+  } catch { /* Debug mode is optional and must never affect normal visits. */ }
   window.gtag('js', new Date());
   window.gtag('config', measurementId, {
     send_page_view: false,
     allow_google_signals: false,
     allow_ad_personalization_signals: false,
+    ...(debugMode ? { debug_mode: true } : {}),
   });
   const script = document.createElement('script');
   script.async = true;
